@@ -518,6 +518,33 @@
     /* Prevent text wrapping */
 }
 
+/* Foldable Devices (ZenBook Fold, Surface Duo, etc.) - Between tablet and mobile */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .cart-actions {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .btn {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+}
+
+/* Tablet Portrait - Adjust buttons for better fit */
+@media (max-width: 900px) and (min-width: 769px) {
+    .cart-actions {
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+    }
+
+    .btn {
+        padding: 1rem 1.25rem;
+        font-size: 0.98rem;
+    }
+}
+
 /* Mobile: Cart and Buttons */
 @media (max-width: 768px) {
     .cart-items {
