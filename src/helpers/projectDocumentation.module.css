@@ -1,0 +1,43 @@
+/*
+  Este archivo de estilos está destinado a ser utilizado por un componente
+  visual que renderice la documentación del proyecto.
+  
+  Ejemplo de uso:
+  
+  .container {
+    font-family: var(--font-family-sans);
+    color: var(--foreground);
+    padding: var(--spacing-6);
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: var(--spacing-2);
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .subSectionTitle {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-top: var(--spacing-6);
+    margin-bottom: var(--spacing-3);
+  }
+
+  .listItem {
+    margin-bottom: var(--spacing-2);
+    line-height: 1.6;
+  }
+
+  .codeBlock {
+    background-color: var(--muted);
+    padding: var(--spacing-4);
+    border-radius: var(--radius);
+    font-family: var(--font-family-monospace);
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+*/

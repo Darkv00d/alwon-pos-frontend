@@ -1,0 +1,109 @@
+.container {
+  padding: var(--spacing-lg);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-sm);
+  color: var(--primary);
+}
+
+.header p {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section {
+  background-color: var(--card-background);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--animation-duration-fast) ease-in-out;
+}
+
+.section:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+.icon {
+  color: var(--primary);
+}
+
+.sectionContent {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+}
+
+.sectionContent p,
+.sectionContent ul,
+.sectionContent ol {
+  margin-bottom: var(--spacing-md);
+}
+
+.sectionContent ul,
+.sectionContent ol {
+  padding-left: var(--spacing-lg);
+}
+
+.sectionContent li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.sectionContent code {
+  background-color: var(--muted);
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+}
+
+.sectionContent strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.checklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.checklist li svg {
+  flex-shrink: 0;
+  margin-top: 4px;
+  color: var(--success);
+}
