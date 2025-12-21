@@ -1,12 +1,12 @@
 import React from 'react';
 import { Package, AlertTriangle } from 'lucide-react';
 import { type Selectable } from 'kysely';
-import { type Products } from '../helpers/schema';
-import { Button } from './Button';
-import { Badge } from './Badge';
-import { Skeleton } from './Skeleton';
-import { ProductPriceDisplay } from './ProductPriceDisplay';
-import styles from './KioskProductGrid.module.css';
+import { type Products } from '../../helpers/schema';
+import { Button } from '../ui/Button';
+import { Badge } from '../ui/Badge';
+import { Skeleton } from '../ui/Skeleton';
+import { ProductPriceDisplay } from '../ui/ProductPriceDisplay';
+import styles from '../ui/KioskProductGrid.module.css';
 
 type ProductWithSupplier = Selectable<Products> & {
   supplier: Selectable<import("../helpers/schema").Suppliers> | null;

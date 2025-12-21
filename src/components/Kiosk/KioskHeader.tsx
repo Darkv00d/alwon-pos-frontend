@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Store, Search, ShoppingCart, User, LogOut } from 'lucide-react';
-import { getCustomers, type OutputType as CustomerWithTier } from '../endpoints/customers_GET.schema';
-import { Button } from './Button';
-import { Input } from './Input';
-import { Badge } from './Badge';
-import { Popover, PopoverContent, PopoverTrigger } from './Popover';
-import { KioskCustomerLookup } from './KioskCustomerLookup';
-import styles from './KioskHeader.module.css';
+import { getCustomers, type OutputType as CustomerWithTier } from '../../endpoints/customers_GET.schema';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import { Badge } from '../ui/Badge';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/Popover';
+import { KioskCustomerLookup } from '../ui/KioskCustomerLookup';
+import styles from '../ui/KioskHeader.module.css';
 
 interface KioskHeaderProps {
   searchQuery: string;

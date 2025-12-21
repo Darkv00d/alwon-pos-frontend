@@ -1,7 +1,7 @@
 import React from 'react';
 import { CheckCircle, X, Award } from 'lucide-react';
-import { Button } from './Button';
-import styles from './KioskPaymentOverlay.module.css';
+import { Button } from '../ui/Button';
+import styles from '../ui/KioskPaymentOverlay.module.css';
 
 interface KioskPaymentOverlayProps {
   paymentState: 'idle' | 'processing' | 'success' | 'error';

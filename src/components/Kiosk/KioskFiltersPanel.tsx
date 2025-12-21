@@ -5,9 +5,9 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from './Accordion';
-import { Button } from './Button';
-import styles from './KioskFiltersPanel.module.css';
+} from '../ui/Accordion';
+import { Button } from '../ui/Button';
+import styles from '../ui/KioskFiltersPanel.module.css';
 
 interface KioskFiltersPanelProps {
   categories: Array<{ name: string; count: number }>;

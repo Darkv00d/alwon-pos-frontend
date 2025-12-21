@@ -1,6 +1,6 @@
 import React from 'react';
-import { getCategoryIcon } from '../helpers/getCategoryIcon';
-import styles from './KioskCategoryCircles.module.css';
+import { getCategoryIcon } from '../../helpers/getCategoryIcon';
+import styles from '../ui/KioskCategoryCircles.module.css';
 
 interface KioskCategoryCirclesProps {
   categories: Array<{ name: string; count: number }>;

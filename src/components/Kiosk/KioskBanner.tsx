@@ -1,7 +1,7 @@
 import React from 'react';
 import Autoplay from 'embla-carousel-autoplay';
-import { useKioskConfig } from '../helpers/kioskConfig';
-import { useLocationsQuery } from '../helpers/useLocationsQueries';
+import { useKioskConfig } from '../../helpers/kioskConfig';
+import { useLocationsQuery } from '../../helpers/useLocationsQueries';
 import {
   Carousel,
   CarouselContent,
@@ -9,9 +9,9 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from './Carousel';
-import { Button } from './Button';
-import styles from './KioskBanner.module.css';
+} from '../ui/Carousel';
+import { Button } from '../ui/Button';
+import styles from '../ui/KioskBanner.module.css';
 
 interface KioskBannerProps {
   onCTAClick?: () => void;
