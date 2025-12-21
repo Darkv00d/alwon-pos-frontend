@@ -1,0 +1,31 @@
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.datePickerButton {
+  width: 100%;
+  justify-content: flex-start;
+  font-weight: 400;
+  color: var(--foreground);
+}
+
+.datePickerButton span {
+  color: var(--muted-foreground);
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+@media (max-width: 640px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,108 @@
+.posSelectorContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  max-width: 300px;
+}
+
+.mapPinIcon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--muted-foreground);
+}
+
+.selectTrigger {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.skeleton {
+  height: 2.5rem; /* Matches SelectTrigger height */
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 300px;
+}
+
+.errorContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--error);
+  background-color: color-mix(in srgb, var(--error) 10%, transparent);
+  color: var(--error);
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  width: 100%;
+  max-width: 300px;
+  height: 2.5rem;
+}
+
+.errorIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+}
+
+/* Location header styles */
+.locationHeader {
+  padding: var(--spacing-3) var(--spacing-4) var(--spacing-1) var(--spacing-4);
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+.locationInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-1);
+}
+
+.locationName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.locationTypeBadge {
+  font-size: 0.75rem;
+  padding: var(--spacing-1) var(--spacing-2);
+  text-transform: uppercase;
+}
+
+.locationAddress {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Equipment item styles */
+.equipmentItem {
+  padding-left: var(--spacing-8);
+  color: var(--popup-foreground);
+}
+
+.equipmentInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.equipmentName {
+  font-weight: 500;
+}
+
+.equipmentCode {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+/* Hover and focus states for equipment items */
+.equipmentItem:hover .equipmentCode,
+.equipmentItem:focus-visible .equipmentCode {
+  color: color-mix(in srgb, var(--primary-foreground) 80%, transparent);
+}

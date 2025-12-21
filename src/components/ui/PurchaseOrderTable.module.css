@@ -1,0 +1,138 @@
+.container {
+  padding: var(--spacing-6);
+  background-color: var(--background);
+  border-radius: var(--radius-lg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-6);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.headerActions {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-3) var(--spacing-4);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.table th {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+}
+
+.table tbody tr {
+  transition: background-color var(--animation-duration-fast) ease;
+}
+
+.table tbody tr:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.table tbody tr:hover {
+  background-color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.actions button {
+  color: var(--muted-foreground);
+}
+
+.actions button:hover {
+  color: var(--primary);
+}
+
+.centeredCell {
+  text-align: center;
+  padding: var(--spacing-8);
+  color: var(--muted-foreground);
+}
+
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--error);
+}
+
+.dialogContent {
+  max-width: 48rem;
+  width: 90vw;
+  padding: 0;
+}
+
+/* Responsive table styles */
+@media (max-width: 768px) {
+  .table thead {
+    display: none;
+  }
+
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  .table tr {
+    margin-bottom: var(--spacing-4);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: var(--spacing-2);
+  }
+
+  .table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .table td:last-child {
+    border-bottom: none;
+  }
+
+  .table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--foreground);
+  }
+}

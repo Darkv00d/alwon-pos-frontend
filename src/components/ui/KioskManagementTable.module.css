@@ -1,0 +1,131 @@
+.tableWrapper {
+  overflow-x: auto;
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+.table th,
+.table td {
+  padding: var(--spacing-3) var(--spacing-4);
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--border);
+}
+
+.table th {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: color-mix(in srgb, var(--background) 50%, var(--surface));
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr:hover {
+  background-color: var(--muted);
+}
+
+.disabledRow {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.deviceCodeCell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.deviceCode {
+  font-family: var(--font-family-monospace);
+  font-size: 0.875rem;
+  background-color: var(--muted);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+}
+
+.editableText {
+  cursor: pointer;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--animation-duration-fast) ease;
+}
+
+.editableText:hover {
+  background-color: color-mix(in srgb, var(--primary) 10%, transparent);
+}
+
+.inlineInput {
+  height: 2rem;
+  padding: var(--spacing-1) var(--spacing-2);
+  font-size: 0.9375rem;
+}
+
+.selectTrigger {
+  height: 2rem;
+  font-size: 0.9375rem;
+  width: 100%;
+  min-width: 150px;
+}
+
+/* Skeleton and Error States */
+.skeletonContainer {
+  padding: var(--spacing-4);
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.skeletonRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.skeletonRow:last-child {
+  border-bottom: none;
+}
+
+.skeletonRow > * {
+  flex-shrink: 0;
+}
+
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-12);
+  background-color: var(--surface);
+  border-radius: var(--radius-md);
+  color: var(--muted-foreground);
+  text-align: center;
+  border: 1px solid var(--border);
+}
+
+.errorState svg {
+  color: var(--error);
+  margin-bottom: var(--spacing-4);
+}
+
+.errorState h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-bottom: var(--spacing-2);
+}

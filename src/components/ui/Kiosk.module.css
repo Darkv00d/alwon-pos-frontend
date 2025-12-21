@@ -1,0 +1,202 @@
+.kioskContainer {
+  background-color: var(--surface);
+  color: var(--surface-foreground);
+  padding: var(--spacing-8);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.headerIcon {
+  width: 48px;
+  height: 48px;
+  color: var(--primary);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--muted-foreground);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.input {
+  width: 100%;
+  padding: var(--spacing-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--foreground);
+  font-size: 1rem;
+  transition: border-color var(--animation-duration-fast), box-shadow var(--animation-duration-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.input::placeholder {
+  color: var(--muted-foreground);
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--animation-duration-fast);
+  margin-top: var(--spacing-2);
+}
+
+.button:hover:not(:disabled) {
+  background-color: color-mix(in srgb, var(--primary) 90%, black);
+}
+
+.button:disabled {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.feedbackArea {
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedbackCard {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-md);
+  border-left-width: 4px;
+}
+
+.feedbackIcon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+}
+
+.feedbackContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.feedbackTitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.feedbackMessage {
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+}
+
+.success {
+  background-color: color-mix(in srgb, var(--success) 10%, var(--surface));
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.success .feedbackTitle {
+  color: color-mix(in srgb, var(--success) 80%, black);
+}
+
+.success .feedbackMessage {
+  color: color-mix(in srgb, var(--success) 70%, black);
+}
+
+.error {
+  background-color: color-mix(in srgb, var(--error) 10%, var(--surface));
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.error .feedbackTitle {
+  color: color-mix(in srgb, var(--error) 80%, black);
+}
+
+.error .feedbackMessage {
+  color: color-mix(in srgb, var(--error) 70%, black);
+}
+
+.hoursInfo {
+  margin-top: var(--spacing-2);
+  padding-top: var(--spacing-2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  width: 100%;
+  color: var(--foreground);
+}
+
+.hoursInfo strong {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+}

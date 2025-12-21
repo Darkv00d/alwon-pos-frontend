@@ -1,0 +1,76 @@
+.container {
+  background-color: var(--surface);
+  padding: var(--spacing-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--surface-foreground);
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.fieldGroup {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.prefix {
+  position: absolute;
+  left: var(--spacing-3);
+  color: var(--muted-foreground);
+  pointer-events: none;
+  font-size: 0.9375rem;
+}
+
+.inputWithPrefix {
+  padding-left: calc(var(--spacing-3) + 1.2rem);
+}
+
+.note {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  background-color: var(--background);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  margin-top: var(--spacing-2);
+}
+
+.placeholder {
+  color: var(--muted-foreground);
+  text-align: center;
+  padding: var(--spacing-8) 0;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 768px) {
+  .fieldGroup {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,131 @@
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+
+.carouselItem {
+  width: 100%;
+  height: 100%;
+}
+
+.imageWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.bannerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.textContainer {
+  position: relative;
+  z-index: var(--z-content-low);
+  color: white;
+  padding: var(--spacing-12);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 60%;
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-size: 2.75rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: var(--spacing-4);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.description {
+  font-size: 1.125rem;
+  line-height: 1.5;
+  margin-bottom: var(--spacing-6);
+  max-width: 500px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.ctaButton {
+  font-size: 1rem;
+  padding: var(--spacing-3) var(--spacing-6);
+  height: auto;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border-color: var(--secondary);
+  box-shadow: var(--shadow-md);
+  transition: all var(--animation-duration-normal) ease;
+}
+
+.ctaButton:hover {
+  background-color: color-mix(in srgb, var(--secondary), black 10%);
+  border-color: color-mix(in srgb, var(--secondary), black 10%);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.bannerContainer :global(.carousel .previous),
+.bannerContainer :global(.carousel .next) {
+  width: 3rem;
+  height: 3rem;
+}
+
+.bannerContainer :global(.carousel .previous:hover:not(:disabled)),
+.bannerContainer :global(.carousel .next:hover:not(:disabled)) {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border-color: var(--secondary);
+}
+
+@media (max-width: 768px) {
+  .bannerContainer {
+    height: 250px;
+    border-radius: var(--radius-md);
+  }
+
+  .textContainer {
+    padding: var(--spacing-6);
+    max-width: 80%;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .ctaButton {
+    font-size: 0.875rem;
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .bannerContainer :global(.carousel .previous),
+  .bannerContainer :global(.carousel .next) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

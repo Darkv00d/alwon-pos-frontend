@@ -1,0 +1,101 @@
+.container {
+  background-color: var(--surface);
+  padding: var(--spacing-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--surface-foreground);
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.textarea {
+  font-family: var(--font-family-base);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--foreground);
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--spacing-2) var(--spacing-3);
+  width: 100%;
+  transition:
+    border-color var(--animation-duration-normal) ease,
+    box-shadow var(--animation-duration-normal) ease;
+  outline: none;
+  resize: vertical;
+  min-height: 6rem;
+}
+
+.textarea:focus {
+  border-color: var(--primary);
+  box-shadow: var(--shadow-focus);
+}
+
+.switchField {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  height: 2.5rem;
+  box-sizing: content-box;
+}
+
+.daysContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+  background-color: var(--background);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+.dayCheckbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.dayCheckbox label {
+  cursor: pointer;
+  user-select: none;
+  color: var(--foreground);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,110 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  color: var(--muted-foreground);
+  text-align: center;
+  transition: all var(--animation-duration-fast) ease;
+  min-height: 200px;
+}
+
+.container.dragging {
+  border-color: var(--primary);
+  background-color: color-mix(in srgb, var(--primary), transparent 95%);
+}
+
+.container.uploading {
+  border-style: solid;
+  border-color: var(--border);
+}
+
+.container.error {
+  border-style: solid;
+  border-color: var(--error);
+  background-color: color-mix(in srgb, var(--error), transparent 95%);
+}
+
+.container.success {
+  border-style: solid;
+  border-color: var(--success);
+  background-color: color-mix(in srgb, var(--success), transparent 95%);
+}
+
+.idleContainer,
+.statusContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.idleIcon {
+  color: var(--muted-foreground);
+}
+
+.idleText {
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.statusText {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--surface-foreground);
+  margin: 0;
+}
+
+.fileName {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin: 0;
+  word-break: break-all;
+  max-width: 100%;
+}
+
+.progressBar {
+  width: 100%;
+  max-width: 250px;
+  height: 8px;
+  background-color: var(--muted);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin-top: var(--spacing-2);
+}
+
+.progressFill {
+  height: 100%;
+  background-color: var(--primary);
+  border-radius: var(--radius-full);
+  transition: width var(--animation-duration-fast) ease;
+}
+
+.progressText {
+  font-size: 0.875rem;
+  font-family: var(--font-family-monospace);
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.errorIcon {
+  color: var(--error);
+}
+
+.errorMessage {
+  font-size: 0.875rem;
+  color: var(--error);
+  max-width: 300px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.successIcon {
+  color: var(--success);
+}

@@ -1,0 +1,107 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  z-index: var(--z-critical);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--spacing-8);
+}
+
+:global(.dark) .overlay {
+  background-color: rgba(0, 0, 0, 0.95);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-8);
+  max-width: 600px;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 1.75rem;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.spinner {
+  width: 120px;
+  height: 120px;
+  border: 8px solid var(--muted);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.successIcon {
+  color: var(--secondary);
+}
+
+.errorIcon {
+  color: var(--error);
+}
+
+.pointsEarned {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--secondary);
+  background-color: color-mix(in srgb, var(--secondary) 10%, transparent);
+  padding: var(--spacing-4) var(--spacing-6);
+  border-radius: var(--radius-lg);
+}
+
+.button {
+  height: 80px;
+  font-size: 1.5rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .spinner {
+    width: 100px;
+    height: 100px;
+  }
+
+  .successIcon,
+  .errorIcon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .pointsEarned {
+    font-size: 1.5rem;
+  }
+
+  .button {
+    height: 60px;
+    font-size: 1.25rem;
+  }
+}

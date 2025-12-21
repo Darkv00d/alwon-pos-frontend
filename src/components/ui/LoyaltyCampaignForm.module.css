@@ -1,0 +1,87 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-4);
+}
+
+.datePickerTrigger {
+  width: 100%;
+  justify-content: space-between;
+  font-weight: 400;
+  color: var(--foreground);
+}
+
+.datePickerTrigger span {
+  color: var(--muted-foreground);
+}
+
+.productSelectorTrigger {
+  width: 100%;
+  justify-content: flex-start;
+  font-weight: 400;
+  color: var(--foreground);
+  gap: var(--spacing-2);
+}
+
+.selectedProductsText {
+  flex-grow: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chevrons {
+  margin-left: auto;
+  opacity: 0.5;
+}
+
+.popoverContent {
+  width: var(--radix-popover-trigger-width);
+  padding: 0;
+}
+
+.checkIcon {
+  margin-right: var(--spacing-2);
+  opacity: 0;
+  transition: opacity var(--animation-duration-fast) ease-in-out;
+}
+
+.checkIconVisible {
+  opacity: 1;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

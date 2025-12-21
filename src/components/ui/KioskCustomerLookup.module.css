@@ -1,0 +1,135 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-6);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 420px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--surface-foreground);
+  margin: 0;
+  text-align: center;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-2);
+  width: 100%;
+  height: 5rem;
+  padding: var(--spacing-3);
+  background-color: var(--muted);
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border);
+  transition: border-color var(--animation-duration-fast) ease-in-out;
+  letter-spacing: 0.1em;
+}
+
+.displayChar {
+  font-family: var(--font-family-monospace);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--surface-foreground);
+  line-height: 1;
+}
+
+.displayPlaceholder {
+  font-family: var(--font-family-monospace);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  opacity: 0.5;
+  line-height: 1;
+}
+
+.displayError {
+  border-color: var(--error);
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+.errorMessage {
+  color: var(--error);
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  min-height: 1.5rem;
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.keypadButton {
+  font-size: 1.75rem;
+  font-weight: 600;
+  height: 5rem;
+  padding: 0;
+  border-color: var(--border);
+  color: var(--foreground);
+  background-color: var(--background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+}
+
+.keypadButton:hover:not(:disabled) {
+  background-color: var(--muted);
+}
+
+.keypadButton:active:not(:disabled) {
+  transform: scale(0.97);
+  background-color: color-mix(in srgb, var(--primary), white 90%);
+}
+
+.keypadButton:disabled {
+  background-color: var(--background);
+  color: var(--muted-foreground);
+  border-color: var(--border);
+  opacity: 0.7;
+}
+
+.keypadButton svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.searchButton {
+  width: 100%;
+  height: 4.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: var(--spacing-2);
+}
+
+.searchButton svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}

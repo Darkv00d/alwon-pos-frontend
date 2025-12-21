@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.dateInput {
+  /* Overriding default width to fit the content */
+  width: auto;
+  min-width: 140px;
+}
+
+.separator {
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+.clearButton {
+  color: var(--muted-foreground);
+}
+
+.clearButton:hover {
+  color: var(--foreground);
+  background-color: var(--muted);
+}

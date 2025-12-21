@@ -1,0 +1,131 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-6);
+  background-color: var(--surface);
+  padding: var(--spacing-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  min-height: 200px;
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--surface-foreground);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.searchWrapper {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+
+.searchInput {
+  padding-left: calc(var(--spacing-3) * 2 + 18px);
+}
+
+.resultsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background-color: var(--card);
+  max-height: 150px;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+}
+
+.resultsList li {
+  padding: var(--spacing-2) var(--spacing-3);
+  cursor: pointer;
+  font-size: 0.9375rem;
+}
+
+.resultsList li:hover {
+  background-color: var(--muted);
+}
+
+.noResults {
+  color: var(--muted-foreground);
+  cursor: default !important;
+}
+
+.noResults:hover {
+  background-color: transparent !important;
+}
+
+.selectedList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  flex-grow: 1;
+  background-color: var(--background);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  min-height: 100px;
+}
+
+.selectedItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--surface);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  font-size: 0.9375rem;
+}
+
+.itemName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.requiredCheckbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.requiredCheckbox label {
+  cursor: pointer;
+}
+
+.listSkeleton {
+  height: 150px;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}

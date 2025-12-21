@@ -1,0 +1,221 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-6);
+  height: 90px;
+  background-color: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  width: 100%;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+}
+
+.logoIcon {
+  color: var(--primary);
+}
+
+.logoText {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1;
+  color: var(--surface-foreground);
+}
+
+.logoKiosk {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.centerSection {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  min-width: 200px;
+}
+
+.searchWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: var(--spacing-3);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+  pointer-events: none;
+}
+
+.searchInput {
+  height: 3rem;
+  padding-left: calc(var(--spacing-3) * 2 + 20px);
+  font-size: 1rem;
+  border-radius: var(--radius-full);
+  background-color: var(--muted);
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  flex-shrink: 0;
+}
+
+.loginButton {
+  height: 3rem;
+  font-size: 1rem;
+  padding: 0 var(--spacing-4);
+}
+
+.customerButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  background-color: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: var(--spacing-1) var(--spacing-4) var(--spacing-1) var(--spacing-1);
+  cursor: pointer;
+  transition: background-color var(--animation-duration-fast) ease;
+  height: 3rem;
+}
+
+.customerButton:hover {
+  background-color: var(--muted);
+}
+
+.avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.customerInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.customerName {
+  font-weight: 600;
+  color: var(--surface-foreground);
+  font-size: 0.9375rem;
+  line-height: 1.2;
+}
+
+.customerPoints {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.logoutPopover {
+  padding: var(--spacing-2);
+}
+
+.logoutButton {
+  width: 100%;
+  justify-content: flex-start;
+  color: var(--error);
+}
+
+.logoutButton:hover {
+  background-color: color-mix(in srgb, var(--error) 10%, transparent);
+  color: var(--error);
+}
+
+.lookupPopoverContent {
+  padding: 0;
+  border: none;
+  box-shadow: var(--shadow-lg);
+  width: auto;
+}
+
+.cartButton {
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  padding: 0;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.75rem;
+  padding: 0 var(--spacing-1);
+  pointer-events: none;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border: 2px solid var(--surface);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: var(--spacing-3);
+    gap: var(--spacing-3);
+  }
+
+  .leftSection {
+    flex-basis: 50%;
+    order: 1;
+  }
+
+  .rightSection {
+    flex-basis: 50%;
+    justify-content: flex-end;
+    order: 2;
+  }
+
+  .centerSection {
+    flex-basis: 100%;
+    order: 3;
+    min-width: 0;
+  }
+
+  .loginButton span {
+    display: none;
+  }
+
+  .loginButton {
+    width: 3rem;
+    padding: 0;
+  }
+
+  .customerInfo {
+    display: none;
+  }
+
+  .customerButton {
+    padding: var(--spacing-1);
+  }
+}

@@ -1,0 +1,202 @@
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.triggerButton {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  border-color: var(--border);
+  background-color: var(--surface);
+  color: var(--surface-foreground);
+}
+
+.container:hover .triggerButton {
+  border-color: var(--primary);
+}
+
+.dropdown {
+  position: absolute;
+  right: 0;
+  top: calc(100% + var(--spacing-1));
+  z-index: var(--z-content-high);
+  background-color: var(--popup);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-3);
+  width: 20rem; /* Increased from 16rem to accommodate hierarchy */
+  max-height: 24rem; /* Increased from 18rem for more content */
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity var(--animation-duration-fast) ease, transform var(--animation-duration-fast) ease, visibility var(--animation-duration-fast) ease;
+}
+
+.container:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.selectAllButton {
+  margin-bottom: var(--spacing-2);
+  justify-content: flex-start;
+  padding: 0;
+  height: auto;
+  color: var(--muted-foreground);
+  text-decoration: underline;
+}
+
+.selectAllButton:hover {
+  color: var(--primary);
+}
+
+.locationsList {
+  overflow-y: auto;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin-right: -8px; /* Hide scrollbar slightly */
+  padding-right: 8px;
+}
+
+.locationGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.locationHeader {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-1);
+}
+
+.locationHeaderLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  cursor: pointer;
+  padding: var(--spacing-1);
+  border-radius: var(--radius-sm);
+}
+
+.locationHeaderLabel:hover {
+  background-color: var(--muted);
+}
+
+.locationInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.locationName {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--surface-foreground);
+}
+
+.locationAddress {
+  font-size: 0.75rem;
+  color: var(--muted-foreground);
+  margin-left: 1.75rem; /* Align with location name text */
+}
+
+.locationTypeBadge {
+  font-size: 0.625rem;
+  padding: 0.125rem 0.375rem;
+}
+
+.equipmentList {
+  margin-left: var(--spacing-4);
+  padding-left: var(--spacing-2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.equipmentItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 0.8125rem;
+  padding: var(--spacing-1);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
+.equipmentItem:hover {
+  background-color: var(--muted);
+}
+
+.equipmentInfo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.equipmentName {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--surface-foreground);
+}
+
+.equipmentCode {
+  font-size: 0.625rem;
+  padding: 0.125rem 0.25rem;
+}
+
+.applyButton {
+  margin-top: var(--spacing-2);
+  width: 100%;
+}
+
+.skeletonContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeletonItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-1) 0;
+}
+
+.error {
+  font-size: 0.875rem;
+  color: var(--error);
+  text-align: center;
+  padding: var(--spacing-4) 0;
+}
+
+/* Scrollbar styling */
+.locationsList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.locationsList::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: var(--radius-sm);
+}
+
+.locationsList::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.locationsList::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}

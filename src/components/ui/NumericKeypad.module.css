@@ -1,0 +1,75 @@
+.keypadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-6);
+  padding: var(--spacing-6);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  max-width: 320px;
+  width: 100%;
+}
+
+.display {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-3);
+  height: 2rem;
+  align-items: center;
+}
+
+.dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: var(--radius-full);
+  background-color: var(--muted);
+  transition: background-color var(--animation-duration-fast) ease-in-out;
+}
+
+.activeDot {
+  background-color: var(--primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-3);
+  width: 100%;
+}
+
+.keypadButton {
+  font-size: 1.5rem;
+  font-weight: 600;
+  height: 4.5rem;
+  padding: 0;
+  border-color: var(--border);
+  color: var(--foreground);
+  background-color: var(--background);
+}
+
+.keypadButton:hover {
+  background-color: var(--muted);
+}
+
+.keypadButton:active {
+  transform: scale(0.95);
+  background-color: color-mix(in srgb, var(--primary), white 90%);
+}
+
+.keypadButton:disabled {
+  background-color: var(--background);
+  color: var(--muted-foreground);
+  border-color: var(--border);
+}
+
+.iconButton svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.submitButton {
+  width: 100%;
+  height: 4rem;
+  font-size: 1.125rem;
+}

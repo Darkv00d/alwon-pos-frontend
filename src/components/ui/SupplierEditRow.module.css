@@ -1,0 +1,107 @@
+.editRow {
+  display: table-row;
+  background-color: color-mix(in srgb, var(--primary) 5%, transparent);
+}
+
+.formGrid {
+  display: contents; /* This makes the form's children act as direct children of the table row */
+}
+
+.basicInfo,
+.contactInfo,
+.businessInfo,
+.actionButtons {
+  display: table-cell;
+  padding: var(--spacing-3) var(--spacing-4);
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+}
+
+.basicInfo,
+.contactInfo,
+.businessInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: var(--spacing-4);
+}
+
+.formItem {
+  margin: 0;
+  width: 100%;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin-top: var(--spacing-1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .editRow {
+    display: block;
+    padding: var(--spacing-4);
+    border-bottom: 1px solid var(--border);
+    background-color: color-mix(in srgb, var(--primary) 3%, transparent);
+  }
+
+  .formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-6);
+  }
+
+  .basicInfo,
+  .contactInfo,
+  .businessInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: var(--spacing-4);
+    border: none;
+  }
+
+  .actionButtons {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0;
+    margin-top: var(--spacing-2);
+  }
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+
+  .basicInfo,
+  .contactInfo,
+  .businessInfo {
+    gap: var(--spacing-3);
+  }
+
+  .actionButtons {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: var(--spacing-3);
+  }
+
+  .actionButtons button {
+    flex: 1;
+  }
+}

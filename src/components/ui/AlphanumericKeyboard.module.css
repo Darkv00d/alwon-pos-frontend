@@ -1,0 +1,72 @@
+.keyboardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 800px;
+  user-select: none;
+}
+
+.keyboardRow {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2);
+  width: 100%;
+}
+
+.keyButton {
+  flex: 1 1 0;
+  min-width: 48px;
+  height: 48px;
+  padding: 0;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border-color: var(--border);
+  color: var(--foreground);
+  background-color: var(--background);
+  text-transform: lowercase;
+}
+
+.keyButton:hover {
+  background-color: var(--muted);
+}
+
+.keyButton:active {
+  transform: scale(0.95);
+  background-color: color-mix(in srgb, var(--primary), white 90%);
+}
+
+.functionKey {
+  flex-grow: 1.5;
+}
+
+.functionKey svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.shiftActive {
+  background-color: color-mix(in srgb, var(--primary), white 85%);
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.spaceKey {
+  flex-grow: 8;
+}
+
+.enterKey {
+  flex-grow: 2;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-color: var(--primary);
+}
+
+.enterKey:hover {
+  background-color: color-mix(in srgb, var(--primary), black 10%);
+  border-color: color-mix(in srgb, var(--primary), black 10%);
+}

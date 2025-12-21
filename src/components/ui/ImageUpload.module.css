@@ -1,0 +1,118 @@
+.container {
+  width: 100%;
+}
+
+.dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  background-color: var(--surface);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  transition: border-color var(--animation-duration-fast) ease, background-color var(--animation-duration-fast) ease;
+  overflow: hidden;
+}
+
+.dropzone:hover,
+.dropzone:focus-visible {
+  border-color: var(--primary);
+  background-color: color-mix(in srgb, var(--primary), var(--surface) 95%);
+}
+
+.dropzone.dragging {
+  border-color: var(--primary);
+  background-color: color-mix(in srgb, var(--primary), var(--surface) 90%);
+}
+
+.dropzone.hasPreview {
+  border-style: solid;
+  border-color: var(--border);
+  padding: 0;
+}
+
+.fileInput {
+  display: none;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  text-align: center;
+  padding: var(--spacing-4);
+}
+
+.placeholderIcon {
+  color: var(--primary);
+}
+
+.placeholderText {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.link {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.placeholderSubtext {
+  font-size: 0.8125rem;
+  color: var(--muted-foreground);
+}
+
+.previewImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.removeButton {
+  position: absolute;
+  top: var(--spacing-2);
+  right: var(--spacing-2);
+  z-index: var(--z-content);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  gap: var(--spacing-2);
+  z-index: var(--z-content-high);
+}
+
+.spinner {
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

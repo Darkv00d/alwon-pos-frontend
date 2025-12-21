@@ -1,0 +1,304 @@
+.checkoutDialog {
+  max-width: 600px;
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+}
+
+.summary {
+  padding: var(--spacing-4);
+  background: var(--muted);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.tierInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.tierBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.customerName {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.pointsBalance {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3);
+  background: color-mix(in srgb, var(--secondary) 10%, transparent);
+  border-radius: var(--radius);
+  color: var(--secondary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+}
+
+.pointsBalance strong {
+  font-weight: 700;
+  color: var(--secondary);
+}
+
+.conversionRate {
+  margin-left: auto;
+  font-size: 0.8125rem;
+  opacity: 0.8;
+}
+
+.summaryRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+}
+
+.summaryRow strong {
+  font-weight: 700;
+  color: var(--foreground);
+  font-size: 1.5rem;
+}
+
+.pointsInfo {
+  padding-top: var(--spacing-2);
+  border-top: 1px solid var(--border);
+  font-size: 0.9375rem;
+  color: var(--muted-foreground);
+  text-align: center;
+}
+
+.paymentMethodSelection {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-2);
+}
+
+.methodButton {
+  height: auto;
+  min-height: 96px;
+  padding: var(--spacing-4);
+  font-size: 1.125rem;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  border-radius: var(--radius-lg);
+  border-width: 2px;
+  transition: all var(--animation-duration-fast) ease;
+}
+
+.methodButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.methodButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.methodButton span:first-of-type {
+  font-size: 1.25rem;
+}
+
+.methodSubtext {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--muted-foreground);
+}
+
+.methodError {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--error);
+}
+
+.hybridIcons {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 1rem;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+  margin-top: var(--spacing-4);
+}
+
+.cardPaymentInfo,
+.pointsPaymentInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-6);
+  background: var(--muted);
+  border-radius: var(--radius-md);
+}
+
+.paymentIcon {
+  color: var(--primary);
+}
+
+.cardMessage {
+  text-align: center;
+  color: var(--foreground);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cardMessage strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.hybridPaymentInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.keypadSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.keypadSection label {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--foreground);
+  text-align: center;
+}
+
+.pointsHint {
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-top: var(--spacing-2);
+}
+
+.paymentSummary {
+  padding: var(--spacing-4);
+  background: var(--muted);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--muted-foreground);
+}
+
+.row span:last-child {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.highlight {
+  color: var(--primary) !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+}
+
+.success {
+  color: var(--success) !important;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+}
+
+.actions button {
+  min-height: 56px;
+  font-size: 1.0625rem;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-8) var(--spacing-4);
+  min-height: 300px;
+}
+
+.successIcon,
+.errorIcon {
+  font-size: 5rem;
+  line-height: 1;
+  margin-bottom: var(--spacing-2);
+}
+
+.result h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+.error {
+  color: var(--error);
+  background-color: color-mix(in srgb, var(--error) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--error) 20%, transparent);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  text-align: center;
+  font-size: 0.9375rem;
+  margin-top: var(--spacing-2);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Kiosk optimizations */
+@media (min-width: 768px) {
+  .methodButton {
+    min-height: 112px;
+    font-size: 1.25rem;
+  }
+
+  .methodButton span:first-of-type {
+    font-size: 1.5rem;
+  }
+}

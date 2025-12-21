@@ -1,0 +1,51 @@
+.container {
+  background-color: var(--surface);
+  padding: var(--spacing-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--surface-foreground);
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-4);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.dateButton {
+  justify-content: flex-start;
+  font-weight: 400;
+  color: var(--foreground);
+  border-color: var(--border);
+}
+
+.dateButton span {
+  color: var(--muted-foreground);
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

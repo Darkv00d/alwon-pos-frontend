@@ -1,0 +1,128 @@
+.container {
+  background-color: var(--card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  display: table;
+  border-collapse: collapse;
+}
+
+.tableHeader {
+  display: table-header-group;
+  background-color: var(--muted);
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.headerCell {
+  display: table-cell;
+  padding: var(--spacing-3) var(--spacing-4);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.tableRow {
+  display: table-row;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.15s ease;
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+.tableRow:hover {
+  background-color: color-mix(in srgb, var(--muted) 50%, transparent);
+}
+
+.cell {
+  display: table-cell;
+  padding: var(--spacing-3) var(--spacing-4);
+  vertical-align: middle;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.quantityCell {
+  font-weight: 500;
+  font-family: var(--font-family-monospace);
+}
+
+.mutedText {
+  color: var(--muted-foreground);
+  font-style: italic;
+}
+
+.stateMessage {
+  text-align: center;
+  padding: var(--spacing-16) var(--spacing-8);
+  color: var(--muted-foreground);
+}
+
+.stateMessage h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+  margin-top: var(--spacing-4);
+  margin-bottom: var(--spacing-2);
+}
+
+.iconDefault {
+  color: var(--primary);
+}
+
+.iconError {
+  color: var(--error);
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .table, .tableHeader, .tableRow, .cell {
+    display: block;
+  }
+
+  .tableHeader {
+    display: none;
+  }
+
+  .tableRow {
+    margin-bottom: var(--spacing-4);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: var(--spacing-4);
+    background-color: var(--surface);
+  }
+
+  .container {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .cell {
+    padding: var(--spacing-2) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    text-align: right;
+  }
+  
+  .cell:last-child {
+    border-bottom: none;
+  }
+
+  .cell::before {
+    content: attr(data-label);
+    font-weight: 500;
+    color: var(--muted-foreground);
+    margin-right: var(--spacing-4);
+    text-align: left;
+  }
+}

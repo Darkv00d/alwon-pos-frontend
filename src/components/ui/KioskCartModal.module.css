@@ -1,0 +1,171 @@
+.dialogContent {
+  max-width: 420px;
+  height: 100vh;
+  max-height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: auto;
+  transform: none;
+  border-radius: 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-6);
+  animation: slideInFromRight var(--animation-duration-normal) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.dialogContent[data-state='closed'] {
+  animation: slideOutToRight var(--animation-duration-normal) cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  font-size: 1.5rem;
+}
+
+.cartContent {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin: var(--spacing-4) 0;
+  padding-right: var(--spacing-2); /* For scrollbar */
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  color: var(--muted-foreground);
+  gap: var(--spacing-4);
+}
+
+.emptyIcon {
+  opacity: 0.5;
+  width: 80px;
+  height: 80px;
+}
+
+.emptyState p {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.emptyState span {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.cartList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemName {
+  font-weight: 500;
+  color: var(--surface-foreground);
+}
+
+.itemQuantity {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.itemTotal {
+  font-weight: 600;
+  font-family: var(--font-family-monospace);
+}
+
+.footer {
+  flex-direction: column;
+  gap: var(--spacing-3);
+  margin-top: auto;
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border);
+}
+
+.totalContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+  margin-bottom: var(--spacing-4);
+}
+
+.totalLabel {
+  font-size: 1.125rem;
+  color: var(--muted-foreground);
+}
+
+.totalAmount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--surface-foreground);
+  font-family: var(--font-family-monospace);
+}
+
+.checkoutButton {
+  width: 100%;
+  height: 80px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border-color: var(--secondary);
+}
+
+.checkoutButton:hover {
+  background-color: color-mix(in srgb, var(--secondary), black 10%);
+  border-color: color-mix(in srgb, var(--secondary), black 10%);
+}
+
+.clearButton {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .dialogContent {
+    max-width: 100vw;
+    width: 100vw;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

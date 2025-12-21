@@ -1,0 +1,135 @@
+.formContainer {
+  background-color: var(--card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+}
+
+.formTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-6);
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.datePickerButton {
+  width: 100%;
+  justify-content: space-between;
+  font-weight: 400;
+  color: var(--foreground);
+}
+
+.datePickerButton span {
+  color: var(--muted-foreground);
+}
+
+.rolesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--spacing-3);
+  background-color: var(--muted);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+}
+
+.roleItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.roleItem .roleLabel {
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.roleName {
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+
+.roleDescription {
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+  font-weight: 400;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-4);
+  padding-top: var(--spacing-4);
+  border-top: 1px solid var(--border);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.statusSelectItem {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.statusDot[data-status="active"] { background-color: var(--success); }
+.statusDot[data-status="inactive"] { background-color: var(--muted-foreground); }
+.statusDot[data-status="suspended"] { background-color: var(--warning); }
+.statusDot[data-status="pending"] { background-color: var(--info); }
+
+.loadingState,
+.errorState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-8);
+  text-align: center;
+}
+
+.errorIcon {
+  color: var(--error);
+}
+
+.noRoles {
+  color: var(--muted-foreground);
+  font-style: italic;
+  text-align: center;
+  padding: var(--spacing-4);
+  background-color: var(--muted);
+  border-radius: var(--radius);
+}

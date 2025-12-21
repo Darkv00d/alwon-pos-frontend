@@ -1,0 +1,109 @@
+.command {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background-color: var(--popup);
+  color: var(--popup-foreground);
+}
+
+.dialogContent {
+  overflow: hidden;
+  padding: 0;
+  box-shadow: var(--shadow-lg);
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding: 0 var(--spacing-3);
+}
+
+.searchIcon {
+  margin-right: var(--spacing-2);
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.5;
+}
+
+.commandInput {
+  display: flex;
+  height: 2.75rem;
+  width: 100%;
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+.commandInput::placeholder {
+  color: var(--muted-foreground);
+}
+
+.commandList {
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.commandEmpty {
+  padding: var(--spacing-6) 0;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.commandGroup {
+  overflow: hidden;
+  padding: var(--spacing-2);
+  color: var(--popup-foreground);
+}
+
+.commandGroup [cmdk-group-heading] {
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted-foreground);
+}
+
+.commandSeparator {
+  height: 1px;
+  margin: calc(var(--spacing-2) * -1) 0 var(--spacing-2) 0;
+  background-color: var(--border);
+}
+
+.commandItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-2) var(--spacing-3);
+  font-size: 0.875rem;
+  outline: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.commandItem[data-selected="true"] {
+  background-color: var(--muted);
+  color: var(--foreground);
+}
+
+.commandItem[data-disabled="true"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.commandShortcut {
+  margin-left: auto;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--muted-foreground);
+}

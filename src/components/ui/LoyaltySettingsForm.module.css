@@ -1,0 +1,87 @@
+.container {
+  padding: var(--spacing-6);
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-6);
+  color: var(--foreground);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--spacing-8);
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+}
+
+.submitButton {
+  margin-top: var(--spacing-6);
+  align-self: flex-start;
+}
+
+.previewCard {
+  background-color: var(--muted);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-6);
+  height: fit-content;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--foreground);
+  margin-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--spacing-3);
+}
+
+.previewHeader h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.previewContent {
+  font-size: 0.9rem;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+.previewContent p {
+  margin: 0 0 var(--spacing-3);
+}
+
+.previewContent p:last-child {
+  margin-bottom: 0;
+}
+
+.previewContent strong {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.errorState {
+  text-align: center;
+  padding: var(--spacing-8);
+  color: var(--error);
+}
+
+@media (max-width: 900px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .previewCard {
+    order: -1; /* Move preview card to the top on mobile */
+  }
+}

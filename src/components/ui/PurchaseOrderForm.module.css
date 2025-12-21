@@ -1,0 +1,136 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 80vh;
+}
+
+.formContent {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: var(--spacing-1) var(--spacing-6) var(--spacing-6) var(--spacing-6);
+  margin-right: calc(var(--spacing-2) * -1);
+  padding-right: calc(var(--spacing-6) + var(--spacing-2));
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.dateButton {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  font-weight: 400;
+  color: var(--foreground);
+}
+
+.dateButton:not([data-placeholder]) {
+  color: var(--foreground);
+}
+
+.itemsSection {
+  margin-top: var(--spacing-6);
+  border-top: 1px solid var(--border);
+  padding-top: var(--spacing-4);
+}
+
+.itemsHeader {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-4);
+}
+
+.itemRow {
+  display: grid;
+  grid-template-columns: 1fr 100px 100px auto;
+  gap: var(--spacing-2);
+  align-items: flex-start;
+  margin-bottom: var(--spacing-4);
+}
+
+.itemProduct {
+  flex-grow: 1;
+}
+
+.itemQuantity {
+  width: 100px;
+}
+
+.itemTaxRate {
+  width: 100px;
+}
+
+.itemRemove {
+  margin-top: 1.75rem; /* Align with inputs */
+  color: var(--muted-foreground);
+}
+
+.itemRemove:hover {
+  color: var(--error);
+}
+
+.addItemButton {
+  margin-top: var(--spacing-2);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-4) var(--spacing-6);
+  border-top: 1px solid var(--border);
+  background-color: var(--surface);
+  margin-top: auto;
+}
+
+.totalDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  font-size: 1rem;
+  color: var(--muted-foreground);
+}
+
+.totalLine {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.totalAmount {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: var(--muted-foreground);
+  border-top: 1px solid var(--border);
+  padding-top: var(--spacing-2);
+  margin-top: var(--spacing-2);
+}
+
+.totalAmount strong {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

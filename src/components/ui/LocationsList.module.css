@@ -1,0 +1,74 @@
+.container {
+  background-color: var(--card);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-6);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-4);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.itemIcon {
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.itemContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.name {
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.code {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  font-family: var(--font-family-monospace);
+}
+
+.stateMessage {
+  text-align: center;
+  padding: var(--spacing-8) var(--spacing-4);
+  color: var(--muted-foreground);
+}
+
+.stateMessage h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-top: var(--spacing-3);
+  margin-bottom: var(--spacing-1);
+}
+
+.iconDefault {
+  color: var(--primary);
+}
+
+.iconError {
+  color: var(--error);
+}

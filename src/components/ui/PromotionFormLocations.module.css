@@ -1,0 +1,60 @@
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-6);
+  box-shadow: var(--shadow);
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--surface-foreground);
+  margin: 0 0 var(--spacing-4);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  cursor: pointer;
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  transition: background-color var(--animation-duration-fast) ease;
+}
+
+.checkboxContainer:hover {
+  background-color: var(--muted);
+}
+
+.checkboxLabel {
+  font-weight: 500;
+  color: var(--surface-foreground);
+  user-select: none;
+}
+
+.infoText {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  background-color: color-mix(in srgb, var(--info) 10%, transparent);
+  border-left: 3px solid var(--info);
+  padding: var(--spacing-3);
+  border-radius: var(--radius);
+  margin: 0;
+}
+
+.multiSelectWrapper {
+  margin-top: var(--spacing-2);
+}
