@@ -1,0 +1,75 @@
+.receipt-dialog {
+    min-width: 500px;
+    max-width: 600px;
+}
+
+.dialog-message {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.receipt-question {
+    background: rgba(0, 191, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.receipt-question h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0;
+}
+
+.receipt-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.receipt-method-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.receipt-method-btn:hover {
+    border-color: var(--primary-color);
+    background: rgba(0, 191, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.method-icon {
+    font-size: 3rem;
+}
+
+.method-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.method-value {
+    font-size: 0.9rem;
+    color: #888;
+    text-align: center;
+}
+
+.email-btn:hover {
+    border-color: #4CAF50;
+}
+
+.phone-btn:hover {
+    border-color: #FFC107;
+}

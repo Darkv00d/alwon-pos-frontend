@@ -1,0 +1,65 @@
+.cancel-dialog {
+    max-width: 500px;
+}
+
+.dialog-message {
+    font-size: 1.1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.warning-box {
+    background: rgba(255, 152, 0, 0.1);
+    border: 2px solid #FF9800;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.warning-box strong {
+    color: #FF9800;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.warning-box p {
+    color: #ddd;
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+.warning-box .highlight {
+    color: #FFB74D;
+    font-size: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 152, 0, 0.3);
+}
+
+.btn-danger {
+    background: #F44336;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #D32F2F;
+    transform: scale(1.05);
+}
+
+/* Fix button overflow for narrow screens */
+@media (max-width: 900px) {
+    .dialog-actions {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+
+    .dialog-actions .btn {
+        width: 100%;
+        font-size: 0.9rem;
+        white-space: normal;
+        text-align: center;
+        padding: 0.8rem 1rem;
+    }
+}

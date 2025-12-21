@@ -1,0 +1,145 @@
+.mode-selector-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #000 100%);
+    color: var(--text-light);
+}
+
+.mode-selector-content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 3rem;
+}
+
+.mode-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.mode-header .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.mode-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.mode-subtitle {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+.mode-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.mode-card {
+    background: var(--panel-bg);
+    border: 2px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.mode-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-color);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.mode-card:hover {
+    border-color: var(--primary-color);
+    transform: translateY(-8px);
+    box-shadow: 0 10px 40px rgba(0, 191, 255, 0.3);
+}
+
+.mode-card:hover::before {
+    transform: scaleX(1);
+}
+
+.mode-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: rgba(0, 191, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.facial-mode:hover .mode-icon {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.pin-mode:hover .mode-icon {
+    background: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+}
+
+.unidentified-mode:hover .mode-icon {
+    background: rgba(244, 67, 54, 0.2);
+    color: #F44336;
+}
+
+.mode-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-light);
+}
+
+.mode-card p {
+    color: #888;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.mode-badge {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    background: rgba(0, 191, 255, 0.2);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mode-badge.warning {
+    background: rgba(255, 152, 0, 0.2);
+    border-color: #FF9800;
+    color: #FF9800;
+}
+
+@media (max-width: 1024px) {
+    .mode-options {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
