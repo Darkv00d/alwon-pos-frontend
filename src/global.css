@@ -1,0 +1,153 @@
+@import url(https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Fira+Code:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap);
+:root {
+  /* Content layers */
+  --z-content-low: 10; /* Minor elevated content */
+  --z-content: 20; /* Standard elevated content */
+  --z-content-high: 30; /* Important content that needs prominence */
+
+  /* Navigation layers */
+  --z-nav-low: 100; /* Secondary navigation components */
+  --z-nav: 200; /* Primary navigation bars */
+  --z-nav-sticky: 300; /* Sticky navigation elements */
+
+  /* Overlay layers */
+  --z-overlay: 400;
+
+  --z-spotlight: 1000; /* Tutorial spotlights/guided help */
+
+  /* System layers */
+  --z-critical: 2000; /* Critical system notifications */
+
+  /* spacing */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  /* Light Mode */
+  --background: hsl(220 20% 98%);
+  --foreground: hsl(220 10% 20%);
+
+  --surface: hsl(0 0% 100%);
+  --surface-foreground: hsl(220 10% 15%);
+  
+  /* Component-specific surfaces for clarity */
+  --sidebar: hsl(220 20% 96%);
+  --sidebar-foreground: hsl(220 10% 25%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(220 10% 15%);
+  --popup: hsl(0 0% 100%);
+  --popup-foreground: hsl(220 10% 15%);
+
+  --primary: hsl(215 80% 60%);
+  --primary-foreground: hsl(0 0% 100%);
+  --secondary: hsl(150 65% 45%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --accent: hsl(215 80% 60%);
+  --accent-foreground: hsl(0 0% 100%);
+
+  --muted: hsl(220 15% 92%);
+  --muted-foreground: hsl(220 10% 45%);
+
+  --success: hsl(140 70% 40%);
+  --success-foreground: hsl(0 0% 100%);
+  --error: hsl(0 80% 60%);
+  --error-foreground: hsl(0 0% 100%);
+  --warning: hsl(35 90% 60%);
+  --warning-foreground: hsl(35 100% 10%);
+  --info: hsl(200 85% 55%);
+  --info-foreground: hsl(0 0% 100%);
+
+  --border: hsl(220 15% 88%);
+
+  /* Font Families */
+  --font-family-base: 'Figtree', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-family-heading: 'Figtree', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-family-monospace: 'JetBrains Mono', 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+  --font-family-cursive: cursive;
+
+  /* Border Radius and Box Shadows */
+  --shadow: 0 1px 2px 0 hsl(220 10% 10% / 0.05);
+  --shadow-md: 0 4px 6px -1px hsl(220 10% 10% / 0.1), 0 2px 4px -2px hsl(220 10% 10% / 0.1);
+  --shadow-lg: 0 10px 15px -3px hsl(220 10% 10% / 0.1), 0 4px 6px -4px hsl(220 10% 10% / 0.1);
+  --shadow-focus: 0 0 0 3px hsl(215 80% 60% / 0.3);
+
+  --radius-sm: 0.25rem; /* 4px */
+  --radius: 0.5rem;    /* 8px */
+  --radius-md: 0.75rem;  /* 12px */
+  --radius-lg: 1rem;     /* 16px */
+  --radius-full: 9999px; 
+
+  /* Animation */
+  --animation-duration-fast: 150ms;
+  --animation-duration-normal: 300ms;
+  --animation-duration-slow: 500ms;
+
+  /* Chart Colors */
+  --chart-color-1: hsl(215 75% 55%);
+  --chart-color-2: hsl(150 60% 48%);
+  --chart-color-3: hsl(35 85% 60%);
+  --chart-color-4: hsl(340 80% 65%);
+  --chart-color-5: hsl(260 70% 65%);
+}
+
+.dark {
+  --background: hsl(220 20% 10%);
+  --foreground: hsl(220 10% 85%);
+
+  --surface: hsl(220 20% 13%);
+  --surface-foreground: hsl(220 10% 95%);
+
+  --sidebar: hsl(220 20% 11%);
+  --sidebar-foreground: hsl(220 10% 90%);
+  --card: hsl(220 20% 13%);
+  --card-foreground: hsl(220 10% 95%);
+  --popup: hsl(220 20% 13%);
+  --popup-foreground: hsl(220 10% 95%);
+
+  --primary: hsl(215 75% 65%);
+  --primary-foreground: hsl(215 20% 10%);
+  --secondary: hsl(150 60% 50%);
+  --secondary-foreground: hsl(150 20% 10%);
+  --accent: hsl(215 75% 65%);
+  --accent-foreground: hsl(215 20% 10%);
+
+  --muted: hsl(220 15% 18%);
+  --muted-foreground: hsl(220 10% 55%);
+
+  --success: hsl(140 60% 50%);
+  --success-foreground: hsl(140 20% 10%);
+  --error: hsl(0 75% 65%);
+  --error-foreground: hsl(0 20% 10%);
+  --warning: hsl(35 80% 60%);
+  --warning-foreground: hsl(35 20% 10%);
+  --info: hsl(200 80% 60%);
+  --info-foreground: hsl(200 20% 10%);
+
+  --border: hsl(220 15% 22%);
+
+  /* Shadows */
+  --shadow: 0 1px 2px 0 hsl(0 0% 0% / 0.05);
+  --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+  --shadow-focus: 0 0 0 3px hsl(215 75% 65% / 0.3);
+
+  /* Chart Colors */
+  --chart-color-1: hsl(215 70% 60%);
+  --chart-color-2: hsl(150 55% 53%);
+  --chart-color-3: hsl(35 80% 65%);
+  --chart-color-4: hsl(340 75% 70%);
+  --chart-color-5: hsl(260 65% 70%);
+}
