@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Package, Home, ShoppingCart, Monitor, Users, Truck, Car, BarChart3, Grid, Briefcase, Settings, Menu, LogOut, User, Warehouse, Rocket, FileText, BookOpen } from 'lucide-react';
 
-import { useAuth } from '../helpers/useAuth';
-import { useAdminModules } from '../helpers/useAdminModules';
+import { useAuth } from '../../helpers/useAuth';
+import { useAdminModules } from '../../helpers/useAdminModules';
 import { Skeleton } from './Skeleton';
 import { Button } from './Button';
 import { 
