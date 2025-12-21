@@ -10,7 +10,7 @@ import {
 } from '../ui/Dialog';
 import { Button } from '../ui/Button';
 import { formatCurrency } from '../../helpers/numberUtils';
-import styles from '../ui/KioskCartModal.module.css';
+import styles from './KioskCartModal.module.css';
 
 interface CartItem {
   id: number;

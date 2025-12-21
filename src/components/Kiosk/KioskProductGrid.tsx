@@ -6,7 +6,7 @@ import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 import { Skeleton } from '../ui/Skeleton';
 import { ProductPriceDisplay } from '../ui/ProductPriceDisplay';
-import styles from '../ui/KioskProductGrid.module.css';
+import styles from './KioskProductGrid.module.css';
 
 type ProductWithSupplier = Selectable<Products> & {
   supplier: Selectable<import("../helpers/schema").Suppliers> | null;

@@ -2,7 +2,7 @@ import React from 'react';
 import { X, MapPin, Star, Award } from 'lucide-react';
 import { Crown, Medal, Gem } from 'lucide-react';
 import { Button } from '../ui/Button';
-import styles from '../ui/KioskCustomerCard.module.css';
+import styles from './KioskCustomerCard.module.css';
 
 interface KioskCustomerCardProps {
   customerName: string;

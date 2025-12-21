@@ -11,7 +11,7 @@ import {
   type CarouselApi,
 } from '../ui/Carousel';
 import { Button } from '../ui/Button';
-import styles from '../ui/KioskBanner.module.css';
+import styles from './KioskBanner.module.css';
 
 interface KioskBannerProps {
   onCTAClick?: () => void;

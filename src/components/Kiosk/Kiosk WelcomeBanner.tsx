@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Crown, Medal, Gem, Award, Star } from 'lucide-react';
-import styles from '../ui/KioskWelcomeBanner.module.css';
+import styles from './KioskWelcomeBanner.module.css';
 
 interface KioskWelcomeBannerProps {
   customerName: string;

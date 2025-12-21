@@ -6,7 +6,7 @@ import { Input } from '../ui/Input';
 import { Badge } from '../ui/Badge';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/Popover';
 import { KioskCustomerLookup } from '../ui/KioskCustomerLookup';
-import styles from '../ui/KioskHeader.module.css';
+import styles from './KioskHeader.module.css';
 
 interface KioskHeaderProps {
   searchQuery: string;
