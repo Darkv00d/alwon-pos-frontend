@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alwon POS - Mockup UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* COLORES DE MARCA ALWON */
+            --alwon-cyan: hsl(195 100% 50%);
+            --alwon-cyan-light: hsl(195 100% 95%);
+            --alwon-cyan-dark: hsl(195 100% 35%);
+
+            /* Fondos - MUY BLANCO Y LIMPIO */
+            --background: hsl(220 20% 98%);
+            --surface: hsl(0 0% 100%);
+            --card: hsl(0 0% 100%);
+
+            /* Bordes sutiles */
+            --border: hsl(220 15% 88%);
+
+            /* Texto */
+            --foreground: hsl(220 10% 20%);
+            --muted-foreground: hsl(220 10% 45%);
+
+            /* Tipos de Cliente */
+            --client-facial: hsl(140 70% 50%);
+            --client-pin: hsl(45 95% 55%);
+            --client-no-id: hsl(0 75% 60%);
+
+            /* Botones */
+            --success: hsl(140 70% 40%);
+            --error: hsl(0 80% 60%);
+            --warning: hsl(35 90% 60%);
+            --muted: hsl(220 15% 92%);
+
+            /* Espaciado */
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            padding: var(--spacing-6);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .header {
+            background: var(--surface);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--alwon-cyan);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--foreground);
+        }
+
+        .header-info {
+            display: flex;
+            gap: var(--spacing-8);
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        /* DASHBOARD GRID */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .session-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: var(--spacing-6);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .session-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .session-card.facial {
+            border-left-color: var(--client-facial);
+        }
+
+        .session-card.pin {
+            border-left-color: var(--client-pin);
+        }
+
+        .session-card.no-id {
+            border-left-color: var(--client-no-id);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .card-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .card-info p {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: var(--spacing-4);
+            border-top: 1px solid var(--border);
+        }
+
+        .items-count {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .total-amount {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--foreground);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--surface);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        /* CART VIEW */
+        .cart-view {
+            display: none;
+        }
+
+        .cart-view.active {
+            display: block;
+        }
+
+        .cart-header {
+            background: var(--surface);
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: 12px;
+            margin-bottom: var(--spacing-6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button {
+            background: var(--muted);
+            border: none;
+            padding: var(--spacing-3) var(--spacing-6);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .back-button:hover {
+            background: hsl(220 15% 85%);
+        }
+
+        .modify-button {
+            background: var(--alwon-cyan);
+            color: white;
+            border: none;
+            padding: var(--spacing-3) var(--spacing-6);
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .modify-button:hover {
+            background: var(--alwon-cyan-dark);
+        }
+
+        .customer-info {
+            background: var(--surface);
+            padding: var(--spacing-6);
+            border-radius: 12px;
+            border-left: 4px solid var(--client-facial);
+            margin-bottom: var(--spacing-6);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-4);
+        }
+
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .product-item {
+            background: var(--surface);
+            padding: var(--spacing-4);
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-info {
+            display: flex;
+            gap: var(--spacing-4);
+            align-items: center;
+            flex: 1;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .product-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .product-details p {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .product-details .ai-detected {
+            display: inline-block;
+            background: var(--alwon-cyan-light);
+            color: var(--alwon-cyan-dark);
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .quantity-display {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
+            background: var(--muted);
+            border-radius: 8px;
+        }
+
+        .qty-label {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .qty-value {
+            font-size: 18px;
+            font-weight: 700;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        /* EDIT MODE */
+        .edit-mode .quantity-display {
+            display: none;
+        }
+
+        .quantity-controls {
+            display: none;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+
+        .edit-mode .quantity-controls {
+            display: flex;
+        }
+
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            border-color: var(--alwon-cyan);
+            color: var(--alwon-cyan);
+        }
+
+        .qty-btn.delete {
+            border-color: var(--error);
+            color: var(--error);
+        }
+
+        .qty-display-edit {
+            font-size: 18px;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .product-price {
+            text-align: right;
+        }
+
+        .unit-price {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: var(--spacing-6);
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .promo-banner h3 {
+            font-size: 24px;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 2fr;
+            gap: var(--spacing-4);
+        }
+
+        .btn {
+            padding: var(--spacing-4) var(--spacing-6);
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-suspend {
+            background: var(--muted);
+            color: var(--foreground);
+        }
+
+        .btn-suspend:hover {
+            background: hsl(220 15% 85%);
+        }
+
+        .btn-cancel {
+            background: var(--error);
+            color: white;
+        }
+
+        .btn-cancel:hover {
+            background: hsl(0 80% 50%);
+        }
+
+        .btn-continue {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-continue:hover {
+            background: hsl(140 70% 35%);
+        }
+
+        .tabs {
+            display: flex;
+            gap: var(--spacing-2);
+            margin-bottom: var(--spacing-6);
+            background: var(--surface);
+            padding: var(--spacing-2);
+            border-radius: 12px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: var(--spacing-3) var(--spacing-4);
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s;
+            color: var(--muted-foreground);
+        }
+
+        .tab.active {
+            background: var(--alwon-cyan);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">Ao</div>
+                <span class="logo-text">ALWON POS</span>
+            </div>
+            <div class="header-info">
+                <span>🕐 14:32</span>
+                <span>👤 María López</span>
+            </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab active" onclick="showDashboard()">Dashboard</button>
+            <button class="tab" onclick="showCart()">Vista de Carrito (Demo)</button>
+        </div>
+
+        <!-- DASHBOARD VIEW -->
+        <div id="dashboard-view">
+            <div class="dashboard-grid">
+                <!-- Session Card - FACIAL -->
+                <div class="session-card facial">
+                    <div class="card-header">
+                        <div class="avatar">JP</div>
+                        <div class="card-info">
+                            <h3>Juan Pérez</h3>
+                            <p>🟢 FACIAL · #ABC-123</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 4 items</span>
+                        <span class="total-amount">$234,580</span>
+                    </div>
+                </div>
+
+                <!-- Session Card - PIN -->
+                <div class="session-card pin">
+                    <div class="card-header">
+                        <div class="avatar">PIN</div>
+                        <div class="card-info">
+                            <h3>PIN-4521</h3>
+                            <p>🟡 PIN TEMPORAL · #PIN-789</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 2 items</span>
+                        <span class="total-amount">$89,999</span>
+                    </div>
+                </div>
+
+                <!-- Session Card - NO_ID -->
+                <div class="session-card no-id">
+                    <div class="card-header">
+                        <div class="avatar">?</div>
+                        <div class="card-info">
+                            <h3>No Identificado</h3>
+                            <p>🔴 SIN IDENTIFICAR · #NO-456</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 3 items</span>
+                        <span class="total-amount">$156,780</span>
+                    </div>
+                </div>
+
+                <!-- More session cards -->
+                <div class="session-card facial">
+                    <div class="card-header">
+                        <div class="avatar">MR</div>
+                        <div class="card-info">
+                            <h3>María Rodríguez</h3>
+                            <p>🟢 FACIAL · #ABC-456</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 1 item</span>
+                        <span class="total-amount">$45,000</span>
+                    </div>
+                </div>
+
+                <div class="session-card pin">
+                    <div class="card-header">
+                        <div class="avatar">PIN</div>
+                        <div class="card-info">
+                            <h3>PIN-8923</h3>
+                            <p>🟡 PIN TEMPORAL · #PIN-234</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 5 items</span>
+                        <span class="total-amount">$312,450</span>
+                    </div>
+                </div>
+
+                <div class="session-card facial">
+                    <div class="card-header">
+                        <div class="avatar">CG</div>
+                        <div class="card-info">
+                            <h3>Carlos García</h3>
+                            <p>🟢 FACIAL · #ABC-789</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 2 items</span>
+                        <span class="total-amount">$178,900</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER -->
+            <div class="footer">
+                <span>6 sesiones activas</span>
+                <span>Actualizado: ahora</span>
+            </div>
+        </div>
+
+        <!-- CART VIEW -->
+        <div id="cart-view" class="cart-view">
+            <div class="cart-header">
+                <button class="back-button" onclick="showDashboard()">← Volver</button>
+                <button class="modify-button">🔒 Modificar Carrito</button>
+            </div>
+
+            <div class="customer-info">
+                <div class="avatar">JP</div>
+                <div class="card-info">
+                    <h3>Juan Pérez</h3>
+                    <p>🟢 CLIENTE FACIAL · Session: ABC-123 · 4 productos</p>
+                </div>
+            </div>
+
+            <div class="product-list">
+                <div class="product-item">
+                    <div class="product-info">
+                        <div class="product-image"></div>
+                        <div class="product-details">
+                            <h4>Laptop Dell XPS 13</h4>
+                            <p>Portátil ultraligero de 13 pulgadas</p>
+                        </div>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn">−</button>
+                        <span class="qty-display">2</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="product-price">
+                        <div class="unit-price">$1,299 × 2</div>
+                        <div class="total-price">$2,598</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-info">
+                        <div class="product-image"></div>
+                        <div class="product-details">
+                            <h4>Mouse Logitech MX Master</h4>
+                            <p>Mouse inalámbrico ergonómico</p>
+                        </div>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn">−</button>
+                        <span class="qty-display">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="product-price">
+                        <div class="unit-price">$99 × 1</div>
+                        <div class="total-price">$99</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-info">
+                        <div class="product-image"></div>
+                        <div class="product-details">
+                            <h4>Teclado Mecánico RGB</h4>
+                            <p>Teclado gaming con switches azules</p>
+                        </div>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn">−</button>
+                        <span class="qty-display">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="product-price">
+                        <div class="unit-price">$149 × 1</div>
+                        <div class="total-price">$149</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-banner">
+                <h3>🎉 PROMOCIÓN ESPECIAL</h3>
+                <p>¡20% de descuento en tu compra!</p>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-suspend">SUSPENDER</button>
+                <button class="btn btn-cancel">CANCELAR</button>
+                <button class="btn btn-continue">CONTINUAR AL PAGO ▶</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showDashboard() {
+            document.getElementById('dashboard-view').style.display = 'block';
+            document.getElementById('cart-view').classList.remove('active');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab')[0].classList.add('active');
+        }
+
+        function showCart() {
+            document.getElementById('dashboard-view').style.display = 'none';
+            document.getElementById('cart-view').classList.add('active');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab')[1].classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

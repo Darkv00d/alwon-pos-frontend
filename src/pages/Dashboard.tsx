@@ -1,0 +1,79 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppStore } from '@/store/appStore';
+import { sessionApi } from '@/services/api';
+import { SessionCard } from '@/components/SessionCard';
+import { Header } from '@/components/Header';
+
+export const Dashboard: React.FC = () => {
+    const navigate = useNavigate();
+    const { sessions, setSessions, setSelectedSession, operator } = useAppStore();
+    const [isLoading, setIsLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        loadSessions();
+    }, []);
+
+    const loadSessions = async () => {
+        try {
+            setIsLoading(true);
+            const activeSessions = await sessionApi.getActiveSessions();
+            setSessions(activeSessions);
+        } catch (error) {
+            console.error('Error loading sessions:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleSessionClick = (session: any) => {
+        setSelectedSession(session);
+        navigate(`/cart/${session.sessionId}`);
+    };
+
+    if (isLoading) {
+        return (
+            <div className="container">
+                <Header operatorName={operator?.name} />
+                <div className="flex items-center justify-center h-96">
+                    <div className="text-xl text-muted">Cargando sesiones...</div>
+                </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="container">
+            <Header operatorName={operator?.name} />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+                {sessions.map((session) => (
+                    <SessionCard
+                        key={session.sessionId}
+                        sessionId={session.sessionId}
+                        clientType={session.clientType}
+                        customerName={session.customerName}
+                        pinCode={session.pinCode}
+                        customerPhotoUrl={session.customerPhotoUrl}
+                        itemCount={session.itemCount}
+                        totalAmount={session.totalAmount}
+                        onClick={() => handleSessionClick(session)}
+                    />
+                ))}
+            </div>
+
+            {sessions.length === 0 && (
+                <div className="card text-center py-12">
+                    <p className="text-xl text-muted">No hay sesiones activas</p>
+                </div>
+            )}
+
+            <div className="card">
+                <div className="flex justify-between items-center text-sm text-muted">
+                    <span>{sessions.length} sesiones activas</span>
+                    <span>Actualizado: ahora</span>
+                </div>
+            </div>
+        </div>
+    );
+};

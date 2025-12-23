@@ -18,18 +18,18 @@ import { type Products, PaymentMethod } from '../helpers/schema';
 import { type OutputType as CustomersOutput } from '../endpoints/customers_GET.schema';
 import { type InputType as KioskTransactionInput } from '../endpoints/kiosk/transactions_POST.schema';
 
-import { Button } from '../components/Button';
-import { PinVerificationDialog } from '../components/PinVerificationDialog';
-import { KioskWelcomeBanner } from '../components/KioskWelcomeBanner';
-import { KioskHeader } from '../components/KioskHeader';
-import { KioskBanner } from '../components/KioskBanner';
-import { KioskCategoryCircles } from '../components/KioskCategoryCircles';
-import { KioskCartModal } from '../components/KioskCartModal';
-import { KioskFiltersPanel } from '../components/KioskFiltersPanel';
-import { KioskProductGrid } from '../components/KioskProductGrid';
-import { NumericKeypad } from '../components/NumericKeypad';
-import { type CustomerTier } from '../components/CustomerTierCard';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../components/Dialog';
+import { Button } from '../components/ui/Button';
+import { PinVerificationDialog } from '../components/ui/PinVerificationDialog';
+import { KioskWelcomeBanner } from '../components/Kiosk/Kiosk WelcomeBanner';
+import { KioskHeader } from '../components/Kiosk/KioskHeader';
+import { KioskBanner } from '../components/Kiosk/KioskBanner';
+import { KioskCategoryCircles } from '../components/Kiosk/KioskCategoryCircles';
+import { KioskCartModal } from '../components/Kiosk/KioskCartModal';
+import { KioskFiltersPanel } from '../components/Kiosk/KioskFiltersPanel';
+import { KioskProductGrid } from '../components/Kiosk/KioskProductGrid';
+import { NumericKeypad } from '../components/ui/NumericKeypad';
+import { type CustomerTier } from '../components/ui/CustomerTierCard';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../components/ui/Dialog';
 import { formatCurrency } from '../helpers/numberUtils';
 
 import styles from './kiosk.module.css';
@@ -50,7 +50,7 @@ export default function KioskPage() {
 
   // Cart state
   const [cart, setCart] = useState<CartItem[]>([]);
-  
+
   // Search and filter state
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm] = useDebounce(searchTerm, 300);
@@ -126,18 +126,18 @@ export default function KioskPage() {
 
   const filteredProducts = useMemo(() => {
     if (!products) return [];
-    let filtered = products.filter(p => 
+    let filtered = products.filter(p =>
       availabilityFilter === 'in-stock' ? p.stockQuantity > 0 : true
     );
-    
+
     if (selectedCategoryCircle && selectedCategoryCircle !== 'Todas') {
       filtered = filtered.filter(p => p.category === selectedCategoryCircle);
     }
-    
+
     if (selectedCategories.length > 0) {
       filtered = filtered.filter(p => selectedCategories.includes(p.category || 'Sin Categoría'));
     }
-    
+
     return filtered;
   }, [products, selectedCategories, selectedCategoryCircle, availabilityFilter]);
 
@@ -188,7 +188,7 @@ export default function KioskPage() {
   const isSubmitDisabled = useMemo(() => {
     if (isProcessing) return true;
     if (!selectedCustomer && paymentMethod !== 'card') return true;
-    
+
     if (paymentMethod === 'card') return finalTotal <= 0;
     if (paymentMethod === 'points') {
       return pointsToUseNum < pointsNeeded || pointsToUseNum > (selectedCustomer?.totalPoints || 0);
@@ -310,7 +310,7 @@ export default function KioskPage() {
   const handlePaymentMethodSelect = useCallback((method: KioskPaymentMethod) => {
     setPaymentMethod(method);
     setPointsToUse('');
-    
+
     if (method === 'points') {
       setPointsToUse(pointsNeeded.toString());
     }
@@ -349,9 +349,9 @@ export default function KioskPage() {
       // Process hybrid payment (points + card)
       if (paymentMethod === 'hybrid') {
         console.log("Procesando pago híbrido - Puntos:", pointsToUseNum, "Tarjeta:", remainingForCard);
-        
+
         toast.info("Procesando pago con tarjeta...");
-        
+
         const cardPaymentResult = await processCardPayment({
           amount: remainingForCard,
           description: `Alwon Kiosk Sale (Hybrid) - ${cart.length} items`,
@@ -375,7 +375,7 @@ export default function KioskPage() {
 
         console.log("Pago con tarjeta aprobado:", cardPaymentResult);
         toast.success("Pago con tarjeta aprobado.");
-        
+
         finalPaymentMethod = 'hybrid';
         cardTransactionId = cardPaymentResult.transactionId;
       }
@@ -384,7 +384,7 @@ export default function KioskPage() {
       if (paymentMethod === 'card') {
         console.log("Procesando pago completo con tarjeta:", finalTotal);
         toast.info("Procesando pago con tarjeta...");
-        
+
         const cardPaymentResult = await processCardPayment({
           amount: finalTotal,
           description: `Alwon Kiosk Sale - ${cart.length} items`,
@@ -412,7 +412,7 @@ export default function KioskPage() {
       // Create transaction in database
       console.log("Creando transacción en base de datos...");
       toast.info("Registrando transacción...");
-      
+
       const transactionPayload: KioskTransactionInput = {
         items: cart.map(item => ({
           productId: item.id,
@@ -428,7 +428,7 @@ export default function KioskPage() {
       });
 
       console.log("Transacción completada exitosamente");
-      
+
       let successMessage = "¡Compra completada exitosamente!";
       if (paymentMethod === "points") {
         successMessage += ` ${pointsToUseNum} puntos canjeados.`;
@@ -469,7 +469,7 @@ export default function KioskPage() {
 
   const handleToggleCategory = useCallback((category: string) => {
     handleUserActivity();
-    setSelectedCategories(prev => 
+    setSelectedCategories(prev =>
       prev.includes(category) ? prev.filter(c => c !== category) : [...prev, category]
     );
   }, [handleUserActivity]);
@@ -492,10 +492,10 @@ export default function KioskPage() {
         console.log(`Facial recognition detected customer ID: ${customerId}`);
         const response = await fetch(`/_api/customers?search=${customerId}`);
         if (!response.ok) throw new Error('Failed to fetch customer');
-        
+
         const customers: CustomerWithTier[] = await response.json();
         const customer = customers.find(c => c.id === customerId);
-        
+
         if (!customer) {
           toast.error('Cliente no encontrado en el sistema.');
           return;
@@ -503,7 +503,7 @@ export default function KioskPage() {
 
         setPendingCustomer(customer);
         setShowPinDialog(true);
-        
+
         toast.success(`¡Bienvenido, ${customer.firstName || customer.name}! 👋`);
       } catch (error) {
         console.error('Error processing facial recognition:', error);
@@ -532,7 +532,7 @@ export default function KioskPage() {
     if (showIdleDialog) {
       console.log("Starting auto-reset countdown (60 seconds)");
       setAutoResetCountdown(60);
-      
+
       autoResetIntervalRef.current = setInterval(() => {
         setAutoResetCountdown(prev => {
           if (prev <= 1) {
@@ -576,7 +576,7 @@ export default function KioskPage() {
         if (barcodeBufferRef.current.length > 0) {
           console.log("📦 Barcode detected:", barcodeBufferRef.current);
           setIsScanning(true);
-          
+
           try {
             const product = await getProductByBarcode({
               barcode: barcodeBufferRef.current,
@@ -593,7 +593,7 @@ export default function KioskPage() {
             // Add to cart
             addToCart(product as ProductWithSupplier);
             toast.success(`Producto agregado: ${product.name}`);
-            
+
           } catch (error) {
             console.error("❌ Barcode scan error:", error);
             toast.error(`Producto no encontrado: ${barcodeBufferRef.current}`);
@@ -643,7 +643,7 @@ export default function KioskPage() {
         />
       )}
 
-      <div 
+      <div
         className={`${styles.kioskContainer} ${showWelcomeBanner ? styles.withBanner : ''}`}
         onClick={handleUserActivity}
         onKeyDown={handleUserActivity}
@@ -678,7 +678,7 @@ export default function KioskPage() {
               <span>Escaneando código...</span>
             </div>
           )}
-          
+
           <aside className={styles.sidebar}>
             <KioskFiltersPanel
               categories={categories}
@@ -744,7 +744,7 @@ export default function KioskPage() {
                     <span className={styles.customerName}>{selectedCustomer?.firstName || selectedCustomer?.name}</span>
                   </div>
                 )}
-                
+
                 {selectedCustomer && (
                   <div className={styles.pointsBalance}>
                     <Coins size={20} />
@@ -754,12 +754,12 @@ export default function KioskPage() {
                     </span>
                   </div>
                 )}
-                
+
                 <div className={styles.summaryRow}>
                   <span>Subtotal:</span>
                   <span>{formatCurrency(cartTotal)}</span>
                 </div>
-                
+
                 {discount > 0 && (
                   <div className={styles.summaryRow}>
                     <span>Descuento {currentTier?.name}:</span>
@@ -768,7 +768,7 @@ export default function KioskPage() {
                     </span>
                   </div>
                 )}
-                
+
                 <div className={styles.summaryRow}>
                   <span>Total a pagar:</span>
                   <strong>{formatCurrency(finalTotal)}</strong>
@@ -868,7 +868,7 @@ export default function KioskPage() {
                         <NumericKeypad
                           value={pointsToUse}
                           onChange={setPointsToUse}
-                          onSubmit={() => {}}
+                          onSubmit={() => { }}
                           maxLength={8}
                         />
                         <div className={styles.pointsHint}>

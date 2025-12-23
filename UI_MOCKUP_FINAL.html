@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alwon POS - UI Final</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --alwon-cyan: hsl(195 100% 50%);
+            --alwon-cyan-light: hsl(195 100% 95%);
+            --alwon-cyan-dark: hsl(195 100% 35%);
+            --background: hsl(220 20% 98%);
+            --surface: hsl(0 0% 100%);
+            --border: hsl(220 15% 88%);
+            --foreground: hsl(220 10% 20%);
+            --muted-foreground: hsl(220 10% 45%);
+            --client-facial: hsl(140 70% 50%);
+            --client-pin: hsl(45 95% 55%);
+            --client-no-id: hsl(0 75% 60%);
+            --success: hsl(140 70% 40%);
+            --error: hsl(0 80% 60%);
+            --warning: hsl(35 90% 60%);
+            --muted: hsl(220 15% 92%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Figtree', sans-serif;
+            background: var(--background);
+            color: var(--foreground);
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: var(--surface);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--alwon-cyan);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 2rem;
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--surface);
+            padding: 0.5rem;
+            border-radius: 12px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.2s;
+            color: var(--muted-foreground);
+        }
+
+        .tab.active {
+            background: var(--alwon-cyan);
+            color: white;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .session-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .session-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .session-card.facial {
+            border-left-color: var(--client-facial);
+        }
+
+        .session-card.pin {
+            border-left-color: var(--client-pin);
+        }
+
+        .session-card.no-id {
+            border-left-color: var(--client-no-id);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .card-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .card-info p {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .card-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .items-count {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .total-amount {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .cart-view {
+            display: none;
+        }
+
+        .cart-view.active {
+            display: block;
+        }
+
+        .cart-header {
+            background: var(--surface);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back-button,
+        .modify-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .back-button {
+            background: var(--muted);
+        }
+
+        .back-button:hover {
+            background: hsl(220 15% 85%);
+        }
+
+        .modify-button {
+            background: var(--alwon-cyan);
+            color: white;
+        }
+
+        .modify-button:hover {
+            background: var(--alwon-cyan-dark);
+        }
+
+        .customer-info {
+            background: var(--surface);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--client-facial);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .product-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-item {
+            background: var(--surface);
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex: 1;
+        }
+
+        .product-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+        }
+
+        .product-details h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .product-details p {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .ai-detected {
+            display: inline-block;
+            background: var(--alwon-cyan-light);
+            color: var(--alwon-cyan-dark);
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        .quantity-display {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            background: var(--muted);
+            border-radius: 8px;
+        }
+
+        .qty-label {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .qty-value {
+            font-size: 18px;
+            font-weight: 700;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .edit-mode .quantity-display {
+            display: none;
+        }
+
+        .quantity-controls {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .edit-mode .quantity-controls {
+            display: flex;
+        }
+
+        .qty-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .qty-btn:hover {
+            border-color: var(--alwon-cyan);
+            color: var(--alwon-cyan);
+        }
+
+        .qty-btn.delete {
+            border-color: var(--error);
+            color: var(--error);
+        }
+
+        .qty-display-edit {
+            font-size: 18px;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .product-price {
+            text-align: right;
+        }
+
+        .unit-price {
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .promo-banner h3 {
+            font-size: 24px;
+            margin-bottom: 0.5rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-suspend {
+            background: var(--muted);
+            color: var(--foreground);
+            flex: 1;
+        }
+
+        .btn-suspend:hover {
+            background: hsl(220 15% 85%);
+        }
+
+        .btn-cancel {
+            background: white;
+            color: var(--error);
+            border: 2px solid var(--error);
+            flex: 1;
+        }
+
+        .btn-cancel:hover {
+            background: hsl(0 80% 95%);
+        }
+
+        .btn-continue {
+            background: var(--success);
+            color: white;
+            padding: 1.5rem 2rem;
+            font-size: 20px;
+            font-weight: 700;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .btn-continue:hover {
+            background: hsl(140 70% 35%);
+            transform: scale(1.02);
+        }
+
+        .footer {
+            background: var(--surface);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            color: var(--muted-foreground);
+        }
+
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .product-info {
+                width: 100%;
+            }
+
+            .quantity-display,
+            .quantity-controls {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .product-price {
+                width: 100%;
+                text-align: left;
+            }
+
+            .action-row {
+                flex-direction: column;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">Ao</div>
+                <span class="logo-text">ALWON POS</span>
+            </div>
+            <div class="header-info">
+                <span>🕐 14:32</span>
+                <span>👤 María López</span>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showDashboard()">Dashboard</button>
+            <button class="tab" onclick="showCart()">Vista de Carrito (Demo)</button>
+        </div>
+
+        <div id="dashboard-view">
+            <div class="dashboard-grid">
+                <div class="session-card facial">
+                    <div class="card-header">
+                        <div class="avatar">JP</div>
+                        <div class="card-info">
+                            <h3>Juan Pérez</h3>
+                            <p>🟢 FACIAL · #ABC-123</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 4 items</span>
+                        <span class="total-amount">$33,300</span>
+                    </div>
+                </div>
+
+                <div class="session-card pin">
+                    <div class="card-header">
+                        <div class="avatar">🔑</div>
+                        <div class="card-info">
+                            <h3>PIN-4521</h3>
+                            <p>🟡 PIN TEMPORAL · #PIN-789</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 2 items</span>
+                        <span class="total-amount">$10,300</span>
+                    </div>
+                </div>
+
+                <div class="session-card no-id">
+                    <div class="card-header">
+                        <div class="avatar">?</div>
+                        <div class="card-info">
+                            <h3>No Identificado</h3>
+                            <p>🔴 SIN IDENTIFICAR · #NO-456</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 3 items</span>
+                        <span class="total-amount">$19,100</span>
+                    </div>
+                </div>
+
+                <div class="session-card facial">
+                    <div class="card-header">
+                        <div class="avatar">MR</div>
+                        <div class="card-info">
+                            <h3>María Rodríguez</h3>
+                            <p>🟢 FACIAL · #ABC-456</p>
+                        </div>
+                    </div>
+                    <div class="card-stats">
+                        <span class="items-count">🛒 5 items</span>
+                        <span class="total-amount">$45,800</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <span>4 sesiones activas</span>
+                <span>Actualizado: ahora</span>
+            </div>
+        </div>
+
+        <div id="cart-view" class="cart-view">
+            <div class="cart-header">
+                <button class="back-button" onclick="showDashboard()">← Volver</button>
+                <button class="modify-button" onclick="toggleEditMode()">🔒 Modificar Carrito</button>
+            </div>
+
+            <div class="customer-info">
+                <div class="avatar">JP</div>
+                <div class="card-info">
+                    <h3>Juan Pérez</h3>
+                    <p>🟢 CLIENTE FACIAL · Session: ABC-123 · 4 productos</p>
+                </div>
+            </div>
+
+            <div class="product-list" id="product-list">
+                <div class="product-item">
+                    <div class="product-info">
+                        <div class="product-image">🥛</div>
+                        <div class="product-details">
+                            <h4>Leche Entera Alpina 1L</h4>
+                            <p>Leche pasteurizada ultra fresca</p>
+                            <span class="ai-detected">🤖 Detectado por IA</span>
+                        </div>
+                    </div>
+                    <div class="quantity-display">
+                        <span class="qty-label">Cantidad:</span>
+                        <span class="qty-value">2</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn delete">🗑</button>
+                        <button class="qty-btn">−</button>
+                        <span class="qty-display-edit">2</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="product-price">
+                        <div class="unit-price">$4,500 × 2</div>
+                        <div class="total-price">$9,000</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-info">
+                        <div class="product-image">🍞</div>
+                        <div class="product-details">
+                            <h4>Pan Tajado Integral</h4>
+                            <p>Pan de molde 500g</p>
+                            <span class="ai-detected">🤖 Detectado por IA</span>
+                        </div>
+                    </div>
+                    <div class="quantity-display">
+                        <span class="qty-label">Cantidad:</span>
+                        <span class="qty-value">1</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn delete">🗑</button>
+                        <button class="qty-btn">−</button>
+                        <span class="qty-display-edit">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="product-price">
+                        <div class="unit-price">$5,800 × 1</div>
+                        <div class="total-price">$5,800</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-info">
+                        <div class="product-image">🥚</div>
+                        <div class="product-details">
+                            <h4>Huevos AA x12 Kikes</h4>
+                            <p>Huevos frescos de gallina</p>
+                            <span class="ai-detected">🤖 Detectado por IA</span>
+                        </div>
+                    </div>
+                    <div class="quantity-display">
+                        <span class="qty-label">Cantidad:</span>
+                        <span class="qty-value">1</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn delete">🗑</button>
+                        <button class="qty-btn">−</button>
+                        <span class="qty-display-edit">1</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="product-price">
+                        <div class="unit-price">$8,900 × 1</div>
+                        <div class="total-price">$8,900</div>
+                    </div>
+                </div>
+
+                <div class="product-item">
+                    <div class="product-info">
+                        <div class="product-image">🧃</div>
+                        <div class="product-details">
+                            <h4>Jugo Hit Mango 1L</h4>
+                            <p>Bebida de frutas pasteurizada</p>
+                            <span class="ai-detected">🤖 Detectado por IA</span>
+                        </div>
+                    </div>
+                    <div class="quantity-display">
+                        <span class="qty-label">Cantidad:</span>
+                        <span class="qty-value">3</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn delete">🗑</button>
+                        <button class="qty-btn">−</button>
+                        <span class="qty-display-edit">3</span>
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <div class="product-price">
+                        <div class="unit-price">$3,200 × 3</div>
+                        <div class="total-price">$9,600</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="promo-banner">
+                <h3>🎉 PROMOCIÓN ESPECIAL</h3>
+                <p>¡20% de descuento en tu compra!</p>
+            </div>
+
+            <div class="action-buttons">
+                <div class="action-row">
+                    <button class="btn btn-suspend">SUSPENDER</button>
+                    <button class="btn btn-cancel">CANCELAR</button>
+                </div>
+                <button class="btn btn-continue">
+                    <span>CONTINUAR AL PAGO</span>
+                    <span>▶</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let editMode = false;
+
+        function showDashboard() {
+            document.getElementById('dashboard-view').style.display = 'block';
+            document.getElementById('cart-view').classList.remove('active');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab')[0].classList.add('active');
+        }
+
+        function showCart() {
+            document.getElementById('dashboard-view').style.display = 'none';
+            document.getElementById('cart-view').classList.add('active');
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab')[1].classList.add('active');
+        }
+
+        function toggleEditMode() {
+            editMode = !editMode;
+            const productList = document.getElementById('product-list');
+            const modifyBtn = document.querySelector('.modify-button');
+
+            if (editMode) {
+                const password = prompt('Ingrese password de operador:');
+                if (password !== '1234') {
+                    alert('Password incorrecto');
+                    editMode = false;
+                    return;
+                }
+
+                productList.classList.add('edit-mode');
+                modifyBtn.textContent = '✓ Guardar Cambios';
+                modifyBtn.style.background = 'var(--success)';
+            } else {
+                productList.classList.remove('edit-mode');
+                modifyBtn.textContent = '🔒 Modificar Carrito';
+                modifyBtn.style.background = 'var(--alwon-cyan)';
+                alert('Cambios guardados correctamente');
+            }
+        }
+    </script>
+</body>
+
+</html>

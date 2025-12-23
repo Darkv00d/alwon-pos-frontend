@@ -1,33 +1,23 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import './global.css';
-import './base.css';
-import KioskPage from './pages/kiosk';
-
-/**
- * React Query Client Configuration
- * Optimized for Android Tablet POS
- */
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes  
-      retry: 1,
-      refetchOnWindowFocus: false, // Kiosk mode
-    },
-    mutations: {
-      retry: 0,
-    },
-  },
-});
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Dashboard } from '@/pages/Dashboard';
+import { CartView } from '@/pages/CartView';
+import { PaymentView } from '@/pages/PaymentView';
+import { useWebSocket } from '@/hooks/useWebSocket';
+import '@/styles/base.css';
 
 function App() {
+  // Initialize WebSocket connection
+  useWebSocket();
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <KioskPage />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/cart/:sessionId" element={<CartView />} />
+        <Route path="/payment/:sessionId" element={<PaymentView />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
