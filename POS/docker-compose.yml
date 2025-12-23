@@ -1,0 +1,254 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: alwon-postgres
+    environment:
+      POSTGRES_USER: alwon
+      POSTGRES_PASSWORD: alwon2024
+      POSTGRES_DB: alwon_pos
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
+    networks:
+      - alwon-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alwon"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # RabbitMQ Message Broker
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: alwon-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: alwon
+      RABBITMQ_DEFAULT_PASS: alwon2024
+      RABBITMQ_DEFAULT_VHOST: alwon-vhost
+    ports:
+      - "5672:5672"   # AMQP port
+      - "15672:15672" # Management UI
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - alwon-network
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # API Gateway (Spring Cloud Gateway)
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    container_name: alwon-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SESSION_SERVICE_URL=http://session-service:8081
+      - CART_SERVICE_URL=http://cart-service:8082
+      - PRODUCT_SERVICE_URL=http://product-service:8083
+      - PAYMENT_SERVICE_URL=http://payment-service:8084
+      - CAMERA_SERVICE_URL=http://camera-service:8085
+      - ACCESS_SERVICE_URL=http://access-service:8086
+      - INVENTORY_SERVICE_URL=http://inventory-service:8087
+    depends_on:
+      - session-service
+      - cart-service
+      - product-service
+      - payment-service
+    networks:
+      - alwon-network
+
+  # WebSocket Server
+  websocket-server:
+    build:
+      context: ./backend/websocket-server
+      dockerfile: Dockerfile
+    container_name: alwon-websocket
+    ports:
+      - "8090:8090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=alwon
+      - RABBITMQ_PASSWORD=alwon2024
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+  # Session Service
+  session-service:
+    build:
+      context: ./backend/session-service
+      dockerfile: Dockerfile
+    container_name: alwon-session-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/alwon_pos
+      - SPRING_DATASOURCE_USERNAME=alwon
+      - SPRING_DATASOURCE_PASSWORD=alwon2024
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=alwon
+      - RABBITMQ_PASSWORD=alwon2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+  # Cart Service
+  cart-service:
+    build:
+      context: ./backend/cart-service
+      dockerfile: Dockerfile
+    container_name: alwon-cart-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/alwon_pos
+      - SPRING_DATASOURCE_USERNAME=alwon
+      - SPRING_DATASOURCE_PASSWORD=alwon2024
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=alwon
+      - RABBITMQ_PASSWORD=alwon2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+  # Product Service
+  product-service:
+    build:
+      context: ./backend/product-service
+      dockerfile: Dockerfile
+    container_name: alwon-product-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/alwon_pos
+      - SPRING_DATASOURCE_USERNAME=alwon
+      - SPRING_DATASOURCE_PASSWORD=alwon2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+  # Payment Service
+  payment-service:
+    build:
+      context: ./backend/payment-service
+      dockerfile: Dockerfile
+    container_name: alwon-payment-service
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/alwon_pos
+      - SPRING_DATASOURCE_USERNAME=alwon
+      - SPRING_DATASOURCE_PASSWORD=alwon2024
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=alwon
+      - RABBITMQ_PASSWORD=alwon2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+  # Camera Integration Service
+  camera-service:
+    build:
+      context: ./backend/camera-service
+      dockerfile: Dockerfile
+    container_name: alwon-camera-service
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/alwon_pos
+      - SPRING_DATASOURCE_USERNAME=alwon
+      - SPRING_DATASOURCE_PASSWORD=alwon2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+  # Access Control Service
+  access-service:
+    build:
+      context: ./backend/access-service
+      dockerfile: Dockerfile
+    container_name: alwon-access-service
+    ports:
+      - "8086:8086"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/alwon_pos
+      - SPRING_DATASOURCE_USERNAME=alwon
+      - SPRING_DATASOURCE_PASSWORD=alwon2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+  # Inventory Service
+  inventory-service:
+    build:
+      context: ./backend/inventory-service
+      dockerfile: Dockerfile
+    container_name: alwon-inventory-service
+    ports:
+      - "8087:8087"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/alwon_pos
+      - SPRING_DATASOURCE_USERNAME=alwon
+      - SPRING_DATASOURCE_PASSWORD=alwon2024
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_USERNAME=alwon
+      - RABBITMQ_PASSWORD=alwon2024
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    networks:
+      - alwon-network
+
+networks:
+  alwon-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
