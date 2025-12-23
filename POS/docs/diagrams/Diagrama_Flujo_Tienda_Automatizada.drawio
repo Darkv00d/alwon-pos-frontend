@@ -1,0 +1,292 @@
+<mxfile host="app.diagrams.net" modified="2025-12-22T15:00:00.000Z" agent="Antigravity AI" version="22.1.11">
+  <diagram name="Alwon POS - Flujo Completo" id="alwon-pos-flow">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TÍTULO -->
+        <mxCell id="title" value="ALWON POS - Flujo de Proceso Completo" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="340" y="20" width="480" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 1: REGISTRO PREVIO -->
+        <mxCell id="phase1-label" value="FASE 1: REGISTRO PREVIO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="80" y="80" width="200" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="registro" value="&lt;b&gt;Video Portero&lt;/b&gt;&lt;br&gt;(Conjunto o Alwon)&lt;br&gt;&lt;br&gt;Registro de persona:&lt;br&gt;- Nombre&lt;br&gt;- Apartamento&lt;br&gt;- Teléfono&lt;br&gt;- Correo&lt;br&gt;- Datos biométricos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5" vertex="1" parent="1">
+          <mxGeometry x="80" y="140" width="200" height="160" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 2: ACCESO A TIENDA - 3 TIPOS -->
+        <mxCell id="phase2-label" value="FASE 2: ACCESO (3 TIPOS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="340" y="80" width="440" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="persona-llega" value="&lt;b&gt;Cliente llega&lt;/b&gt;&lt;br&gt;a la tienda" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="490" y="140" width="140" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="registro" target="persona-llega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- TIPO 1: FACIAL -->
+        <mxCell id="tipo-facial" value="&lt;b&gt;TIPO 1: FACIAL&lt;/b&gt;&lt;br&gt;Reconocimiento facial&lt;br&gt;Video Portero&lt;br&gt;&lt;br&gt;✓ Identidad completa&lt;br&gt;✓ Datos permanentes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5" vertex="1" parent="1">
+          <mxGeometry x="340" y="220" width="130" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-facial" value="Facial" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d4edda;strokeColor=#28a745" edge="1" parent="1" source="persona-llega" target="tipo-facial">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="200" />
+              <mxPoint x="405" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- TIPO 2: PIN -->
+        <mxCell id="tipo-pin" value="&lt;b&gt;TIPO 2: PIN&lt;/b&gt;&lt;br&gt;Ingresa PIN&lt;br&gt;Video Portero&lt;br&gt;&lt;br&gt;⚠️ ID temporal&lt;br&gt;⚠️ Datos se eliminan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffc107;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5" vertex="1" parent="1">
+          <mxGeometry x="495" y="220" width="130" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-pin" value="PIN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#fff3cd;strokeColor=#ffc107" edge="1" parent="1" source="persona-llega" target="tipo-pin">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- TIPO 3: NO IDENTIFICADO -->
+        <mxCell id="tipo-noid" value="&lt;b&gt;TIPO 3: NO ID&lt;/b&gt;&lt;br&gt;Sin permiso o&lt;br&gt;autorizado&lt;br&gt;&lt;br&gt;❌ Sin identidad&lt;br&gt;📷 Foto + videos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5" vertex="1" parent="1">
+          <mxGeometry x="650" y="220" width="130" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-noid" value="No ID" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#f8d7da;strokeColor=#dc3545" edge="1" parent="1" source="persona-llega" target="tipo-noid">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="200" />
+              <mxPoint x="715" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Todos convergen -->
+        <mxCell id="portero-valida" value="&lt;b&gt;Acceso Autorizado&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfe2ff;strokeColor=#0d6efd" vertex="1" parent="1">
+          <mxGeometry x="465" y="340" width="190" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow2-facial" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="tipo-facial" target="portero-valida">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="405" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="arrow2-pin" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="tipo-pin" target="portero-valida">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow2-noid" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="tipo-noid" target="portero-valida">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="715" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+
+        <!-- FASE 3: COMPRA EN TIENDA -->
+        <mxCell id="phase3-label" value="FASE 3: COMPRA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="340" y="330" width="200" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cliente-tienda" value="&lt;b&gt;Cliente en tienda&lt;/b&gt;&lt;br&gt;Toma productos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="340" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="portero-valida" target="cliente-tienda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="concentrador-ai" value="&lt;b&gt;CONCENTRADOR AI&lt;/b&gt;&lt;br&gt;(Sistema Externo)&lt;br&gt;&lt;br&gt;Detecta:&lt;br&gt;- Productos tomados&lt;br&gt;- Cliente que toma&lt;br&gt;&lt;br&gt;Envía a POS:&lt;br&gt;- Artículos&lt;br&gt;- Info cliente&lt;br&gt;- Datos biométricos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5" vertex="1" parent="1">
+          <mxGeometry x="580" y="340" width="200" height="180" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow4" value="Detecta" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;dashed=1" edge="1" parent="1" source="cliente-tienda" target="concentrador-ai">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 4: POS RECIBE DATOS -->
+        <mxCell id="phase4-label" value="FASE 4: POS EN TIEMPO REAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="820" y="80" width="280" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="pos-recibe" value="&lt;b&gt;POS (Tablet Android)&lt;/b&gt;&lt;br&gt;&lt;br&gt;Recibe en tiempo real:&lt;br&gt;✓ Clientes activos&lt;br&gt;✓ Fotos clientes&lt;br&gt;✓ Artículos por cliente&lt;br&gt;✓ Datos biométricos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="820" y="140" width="280" height="120" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow5" value="Webhook/API" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fillColor=#e1d5e7;strokeColor=#9673a6" edge="1" parent="1" source="concentrador-ai" target="pos-recibe">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="430" />
+              <mxPoint x="760" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="pos-muestra" value="&lt;b&gt;Vista POS:&lt;/b&gt;&lt;br&gt;&lt;br&gt;Lista de clientes activos:&lt;br&gt;[📷] Juan Pérez - 3 items&lt;br&gt;[📷] María López - 5 items&lt;br&gt;[📷] Carlos Ruiz - 2 items" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5" vertex="1" parent="1">
+          <mxGeometry x="820" y="280" width="280" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="pos-recibe" target="pos-muestra">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 5: CLIENTE SE ACERCA AL POS -->
+        <mxCell id="phase5-label" value="FASE 5: CHECKOUT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="820" y="410" width="280" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="cliente-acerca" value="&lt;b&gt;Cliente se acerca&lt;/b&gt;&lt;br&gt;al POS a pagar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="60" y="480" width="140" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="cliente-tienda" target="cliente-acerca">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="420" />
+              <mxPoint x="320" y="600" />
+              <mxPoint x="130" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="operador-selecciona" value="&lt;b&gt;1. Operador SELECCIONA&lt;/b&gt;&lt;br&gt;cliente de la lista" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="820" y="470" width="280" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="pos-muestra" target="operador-selecciona">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="operador-confirma" value="&lt;b&gt;2. Operador CONFIRMA&lt;/b&gt;&lt;br&gt;identidad del cliente&lt;br&gt;(compara foto con persona)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="820" y="540" width="280" height="70" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="operador-selecciona" target="operador-confirma">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="pos-muestra-carrito" value="&lt;b&gt;3. POS MUESTRA CARRITO&lt;/b&gt;&lt;br&gt;&lt;br&gt;Todos los artículos del cliente:&lt;br&gt;• Coca Cola x2 - $4,000&lt;br&gt;• Pan integral - $3,500&lt;br&gt;• Leche deslactosada - $5,200&lt;br&gt;&lt;br&gt;Total: $12,700" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="820" y="630" width="280" height="140" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="operador-confirma" target="pos-muestra-carrito">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 6: AJUSTE MANUAL -->
+        <mxCell id="phase6-label" value="FASE 6: AJUSTE MANUAL" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="480" y="630" width="280" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="decision-ajuste" value="¿Faltan artículos?&lt;br&gt;(IA en entrenamiento)" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="520" y="690" width="200" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;dashed=1" edge="1" parent="1" source="pos-muestra-carrito" target="decision-ajuste">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="trabajador-agrega" value="&lt;b&gt;SÍ&lt;/b&gt;&lt;br&gt;&lt;br&gt;Trabajador AGREGA&lt;br&gt;artículos faltantes&lt;br&gt;manualmente" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="300" y="690" width="160" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow12" value="SÍ" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#f8d7da;strokeColor=#dc3545" edge="1" parent="1" source="decision-ajuste" target="trabajador-agrega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;dashed=1" edge="1" parent="1" source="trabajador-agrega" target="pos-muestra-carrito">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="820" />
+              <mxPoint x="960" y="820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- FASE 7: PAGO -->
+        <mxCell id="fase-pago" value="&lt;b&gt;NO - Todo correcto&lt;/b&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="580" y="800" width="140" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow14" value="NO" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;fillColor=#d4edda;strokeColor=#28a745" edge="1" parent="1" source="decision-ajuste" target="fase-pago">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="840" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="procesar-pago" value="&lt;b&gt;4. PROCESAR PAGO&lt;/b&gt;&lt;br&gt;&lt;br&gt;Método de pago:&lt;br&gt;□ Tarjeta Débito&lt;br&gt;□ PSE&lt;br&gt;&lt;br&gt;[Procesar Pago]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfe2ff;strokeColor=#0d6efd;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="500" y="850" width="240" height="130" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2" edge="1" parent="1" source="fase-pago" target="procesar-pago">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="pago-exitoso" value="&lt;b&gt;✓ PAGO EXITOSO&lt;/b&gt;&lt;br&gt;&lt;br&gt;- Actualizar inventario&lt;br&gt;- Generar recibo&lt;br&gt;- Cerrar sesión cliente" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="520" y="1010" width="200" height="100" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fillColor=#d4edda;strokeColor=#28a745" edge="1" parent="1" source="procesar-pago" target="pago-exitoso">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- LEYENDA -->
+        <mxCell id="leyenda-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1" vertex="1" parent="1">
+          <mxGeometry x="60" y="860" width="360" height="250" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda-title" value="LEYENDA" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="80" y="870" width="100" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda1" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656" vertex="1" parent="1">
+          <mxGeometry x="80" y="910" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda1-text" value="= Cliente/Persona" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0" vertex="1" parent="1">
+          <mxGeometry x="130" y="910" width="150" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda2" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf" vertex="1" parent="1">
+          <mxGeometry x="80" y="950" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda2-text" value="= Sistema Video Portero" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0" vertex="1" parent="1">
+          <mxGeometry x="130" y="950" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda3" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6" vertex="1" parent="1">
+          <mxGeometry x="80" y="990" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda3-text" value="= Concentrador AI (Externo)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0" vertex="1" parent="1">
+          <mxGeometry x="130" y="990" width="200" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda4" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450" vertex="1" parent="1">
+          <mxGeometry x="80" y="1030" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda4-text" value="= POS (Nuestro sistema)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0" vertex="1" parent="1">
+          <mxGeometry x="130" y="1030" width="180" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda5" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00" vertex="1" parent="1">
+          <mxGeometry x="80" y="1070" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda5-text" value="= Acción del Operador" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0" vertex="1" parent="1">
+          <mxGeometry x="130" y="1070" width="180" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

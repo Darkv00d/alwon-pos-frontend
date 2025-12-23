@@ -1,0 +1,139 @@
+<mxfile host="app.diagrams.net" modified="2025-12-22T19:00:00.000Z" agent="Antigravity AI" version="22.1.11">
+  <diagram name="Alwon POS - 3 Tipos de Acceso" id="alwon-pos-3-types">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- TÍTULO -->
+        <mxCell id="title" value="ALWON POS - Flujo con 3 Tipos de Acceso" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="600" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 1: REGISTRO PREVIO -->
+        <mxCell id="phase1-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#999999;dashed=1;opacity=30" vertex="1" parent="1">
+          <mxGeometry x="60" y="100" width="280" height="260" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="phase1-label" value="FASE 1: REGISTRO PREVIO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="80" y="110" width="240" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="registro" value="&lt;b&gt;Video Portero&lt;/b&gt;&lt;br&gt;(Conjunto o Alwon)&lt;br&gt;&lt;br&gt;Registro de persona:&lt;br&gt;- Nombre&lt;br&gt;- Apartamento&lt;br&gt;- Teléfono&lt;br&gt;- Correo&lt;br&gt;- Datos biométricos faciales" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5" vertex="1" parent="1">
+          <mxGeometry x="80" y="170" width="240" height="170" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 2: 3 TIPOS DE ACCESO -->
+        <mxCell id="phase2-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0f0f0;strokeColor=#999999;dashed=1;opacity=30" vertex="1" parent="1">
+          <mxGeometry x="400" y="100" width="940" height="500" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="phase2-label" value="FASE 2: ACCESO A TIENDA (3 TIPOS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="420" y="110" width="900" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="persona-llega" value="&lt;b&gt;Cliente llega&lt;/b&gt;&lt;br&gt;a la tienda" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="800" y="180" width="160" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-registro" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#666666" edge="1" parent="1" source="registro" target="persona-llega">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <!-- TIPO 1: FACIAL (VERDE) -->
+        <mxCell id="tipo1-facial" value="&lt;b&gt;TIPO 1: FACIAL&lt;/b&gt;&lt;br&gt;&lt;br&gt;Reconocimiento facial&lt;br&gt;en Video Portero&lt;br&gt;&lt;br&gt;✓ Cliente REGISTRADO&lt;br&gt;✓ Identidad completa conocida&lt;br&gt;✓ Nombre, apartamento, foto&lt;br&gt;✓ Datos permanentes&lt;br&gt;&lt;br&gt;POS recibe:&lt;br&gt;- ID cliente&lt;br&gt;- Nombre completo&lt;br&gt;- Foto&lt;br&gt;- Carrito en tiempo real" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=12;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="420" y="280" width="250" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-facial" value="FACIAL" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fillColor=#d4edda;strokeColor=#28a745;fontSize=12;fontStyle=1" edge="1" parent="1" source="persona-llega" target="tipo1-facial">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- TIPO 2: PIN (AMARILLO) -->
+        <mxCell id="tipo2-pin" value="&lt;b&gt;TIPO 2: PIN&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ingresa PIN en Video Portero&lt;br&gt;&lt;br&gt;⚠️ Cliente TEMPORAL&lt;br&gt;⚠️ No dio permiso facial&lt;br&gt;⚠️ Identificación por cámaras INTERNAS&lt;br&gt;⚠️ Datos se ELIMINAN tras pago&lt;br&gt;&lt;br&gt;POS recibe:&lt;br&gt;- ID temporal (PIN-XXX)&lt;br&gt;- Foto biométrica temporal&lt;br&gt;- Carrito en tiempo real&lt;br&gt;&lt;br&gt;Al pagar:&lt;br&gt;✗ Borrar foto biométrica&lt;br&gt;✗ Borrar ID temporal" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffc107;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=12;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="700" y="280" width="280" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-pin" value="PIN" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fillColor=#fff3cd;strokeColor=#ffc107;fontSize=12;fontStyle=1" edge="1" parent="1" source="persona-llega" target="tipo2-pin">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- TIPO 3: NO IDENTIFICADO (ROJO) -->
+        <mxCell id="tipo3-noid" value="&lt;b&gt;TIPO 3: NO IDENTIFICADO&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ingresa SIN permiso o&lt;br&gt;AUTORIZADO por persona registrada&lt;br&gt;&lt;br&gt;❌ Sin identidad conocida&lt;br&gt;📷 Sistema captura FOTO de la persona&lt;br&gt;🎬 Sistema captura VIDEO/GIF por CADA producto&lt;br&gt;&lt;br&gt;POS recibe:&lt;br&gt;- ID único (NOID-XXX)&lt;br&gt;- Foto física de la persona&lt;br&gt;- Carrito con evidencia:&lt;br&gt;  * Producto 1 + video/GIF&lt;br&gt;  * Producto 2 + video/GIF&lt;br&gt;  * Producto N + video/GIF&lt;br&gt;- ID de quien autorizó (si aplica)&lt;br&gt;&lt;br&gt;Operador debe:&lt;br&gt;✓ Ver evidencia visual&lt;br&gt;✓ Verificar productos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;align=left;verticalAlign=top;spacingLeft=10;spacingTop=5;fontSize=12;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="1010" y="280" width="310" height="280" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-noid" value="NO ID" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;fillColor=#f8d7da;strokeColor=#dc3545;fontSize=12;fontStyle=1" edge="1" parent="1" source="persona-llega" target="tipo3-noid">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- CONVERGENCIA: Cliente en tienda -->
+        <mxCell id="acceso-ok" value="&lt;b&gt;ACCESO AUTORIZADO&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#cfe2ff;strokeColor=#0d6efd;fontStyle=1;fontSize=14" vertex="1" parent="1">
+          <mxGeometry x="750" y="620" width="260" height="50" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-facial-ok" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#28a745" edge="1" parent="1" source="tipo1-facial" target="acceso-ok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-pin-ok" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#ffc107" edge="1" parent="1" source="tipo2-pin" target="acceso-ok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-noid-ok" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#dc3545" edge="1" parent="1" source="tipo3-noid" target="acceso-ok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FASE 3: EN TIENDA -->
+        <mxCell id="cliente-tienda" value="&lt;b&gt;Cliente en Tienda&lt;/b&gt;&lt;br&gt;Toma productos&lt;br&gt;Concentrador AI detecta" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="750" y="720" width="260" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="arrow-tienda" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=3;strokeColor=#666666" edge="1" parent="1" source="acceso-ok" target="cliente-tienda">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- LEYENDA -->
+        <mxCell id="leyenda-bg" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;dashed=1" vertex="1" parent="1">
+          <mxGeometry x="60" y="640" width="320" height="320" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda-title" value="LEYENDA - TIPOS DE CLIENTES" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;fontSize=16" vertex="1" parent="1">
+          <mxGeometry x="80" y="650" width="280" height="30" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda1-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4edda;strokeColor=#28a745;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="80" y="700" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda1-text" value="&lt;b&gt;FACIAL&lt;/b&gt; = Registrado, identidad completa" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="140" y="700" width="220" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda2-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3cd;strokeColor=#ffc107;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="80" y="760" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda2-text" value="&lt;b&gt;PIN&lt;/b&gt; = Temporal, sin facial, datos se borran" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="140" y="760" width="220" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda3-box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8d7da;strokeColor=#dc3545;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="80" y="820" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda3-text" value="&lt;b&gt;NO ID&lt;/b&gt; = Sin identidad, con evidencia visual" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="140" y="820" width="220" height="40" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="leyenda-note" value="Luego continúa el flujo igual para todos:&lt;br&gt;POS recibe datos → Operador selecciona → Confirma → Muestra carrito → Pago" style="text;html=1;strokeColor=none;fillColor=#ffffcc;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=1;fontSize=11;fontStyle=2" vertex="1" parent="1">
+          <mxGeometry x="80" y="880" width="280" height="60" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
