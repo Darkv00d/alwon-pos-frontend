@@ -7,6 +7,8 @@ interface SessionCardProps {
     customerName?: string;
     pinCode?: string;
     customerPhotoUrl?: string;
+    tower?: string;
+    apartment?: string;
     itemCount: number;
     totalAmount: number;
     onClick: () => void;
@@ -18,6 +20,8 @@ export const SessionCard: React.FC<SessionCardProps> = ({
     customerName,
     pinCode,
     customerPhotoUrl,
+    tower,
+    apartment,
     itemCount,
     totalAmount,
     onClick
@@ -61,8 +65,13 @@ export const SessionCard: React.FC<SessionCardProps> = ({
                 <div className="flex-1">
                     <h3 className="text-lg font-semibold mb-1">{getDisplayName()}</h3>
                     <p className="text-sm text-muted">
-                        {getStatusLabel()} · #{sessionId}
+                        {getStatusLabel()}
                     </p>
+                    {(clientType === ClientType.FACIAL || clientType === ClientType.PIN) && (tower || apartment) && (
+                        <p className="text-xs text-muted mt-1">
+                            📍 {tower && `Torre ${tower}`}{tower && apartment && ' - '}{apartment && `Apto ${apartment}`}
+                        </p>
+                    )}
                 </div>
             </div>
             <div className="flex justify-between items-center pt-4 border-t border-border">

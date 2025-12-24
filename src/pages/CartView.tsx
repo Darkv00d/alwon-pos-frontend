@@ -158,18 +158,15 @@ export const CartView: React.FC = () => {
                                     ? `PIN-${selectedSession.pinCode}`
                                     : 'No Identificado'}
                         </h3>
-                        <p className="text-muted mb-2">
-                            Session: {selectedSession.sessionId} · {currentCart.items.length} productos
+                        <p className="text-sm text-muted mb-1">
+                            {selectedSession.clientType === ClientType.FACIAL ? '🟢 Cliente Identificado' :
+                                selectedSession.clientType === ClientType.PIN ? '🟡 Cliente Temporal' :
+                                    '🔴 Cliente No Identificado'}
                         </p>
-                        {selectedSession.tower && selectedSession.apartment && (
-                            <div className="flex gap-6 text-sm">
-                                <div>
-                                    <strong className="text-muted">Torre:</strong> {selectedSession.tower}
-                                </div>
-                                <div>
-                                    <strong className="text-muted">Apto:</strong> {selectedSession.apartment}
-                                </div>
-                            </div>
+                        {(selectedSession.tower || selectedSession.apartment) && (
+                            <p className="text-sm font-medium">
+                                📍 {selectedSession.tower && `Torre ${selectedSession.tower}`}{selectedSession.tower && selectedSession.apartment && ' - '}{selectedSession.apartment && `Apto ${selectedSession.apartment}`}
+                            </p>
                         )}
                     </div>
                 </div>
@@ -251,19 +248,51 @@ export const CartView: React.FC = () => {
                 <p>¡20% de descuento en tu compra!</p>
             </div>
 
+            {/* Cart Summary */}
+            <div className="card mb-6">
+                <div className="flex justify-between items-center mb-4">
+                    <span className="text-lg text-muted">Total de productos:</span>
+                    <span className="text-2xl font-bold">{currentCart.items.length} items</span>
+                </div>
+                <div className="flex justify-between items-center pb-4 border-t pt-4">
+                    <span className="text-2xl font-bold">TOTAL:</span>
+                    <span className="text-4xl font-bold" style={{ color: 'var(--success)' }}>
+                        ${currentCart.totalAmount.toLocaleString('es-CO')}
+                    </span>
+                </div>
+            </div>
+
             {/* Action Buttons */}
             <div className="flex flex-col gap-4">
                 <div className="flex gap-4">
-                    <button className="btn btn-muted flex-1" onClick={handleSuspend}>
-                        SUSPENDER
+                    <button
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all text-base font-semibold flex-1"
+                        onClick={handleSuspend}
+                        style={{ minHeight: '52px' }}
+                    >
+                        <span className="text-2xl">🔄</span>
+                        <span>SUSPENDER</span>
                     </button>
-                    <button className="btn btn-error flex-1" onClick={handleCancel}>
-                        CANCELAR
+                    <button
+                        className="flex items-center justify-center gap-2 px-6 py-3 rounded-lg border-2 border-red-400 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all text-base font-semibold flex-1"
+                        onClick={handleCancel}
+                        style={{ minHeight: '52px' }}
+                    >
+                        <span className="text-2xl">❌</span>
+                        <span>CANCELAR</span>
                     </button>
                 </div>
-                <button className="btn btn-success btn-xl w-full" onClick={handleContinueToPayment}>
+                <button
+                    className="flex items-center justify-center gap-3 w-full px-8 py-5 rounded-lg text-white text-xl font-bold transition-all hover:shadow-2xl hover:-translate-y-1"
+                    onClick={handleContinueToPayment}
+                    style={{
+                        background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
+                        minHeight: '70px',
+                        boxShadow: '0 8px 24px rgba(16, 185, 129, 0.3)'
+                    }}
+                >
                     <span>CONTINUAR AL PAGO</span>
-                    <span>▶</span>
+                    <span className="text-3xl">→</span>
                 </button>
             </div>
         </div>
