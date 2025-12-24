@@ -154,11 +154,11 @@ ON CONFLICT (sku) DO NOTHING;
 -- PAYMENTS SCHEMA
 -- ================================
 
-CREATE TABLE IF NOT��EXISTS payments.payment_transactions (
+CREATE TABLE IF NOT EXISTS payments.payment_transactions (
     id BIGSERIAL PRIMARY KEY,
     transaction_id VARCHAR(100) UNIQUE NOT NULL,
     session_id VARCHAR(100) NOT NULL,
-    payment_method VARCHAR (20) NOT NULL, -- PSE, DEBIT, CREDIT
+    payment_method VARCHAR(20) NOT NULL, -- PSE, DEBIT, CREDIT
     amount DECIMAL(10, 2) NOT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'PENDING', -- PENDING, PROCESSING, APPROVED, REJECTED, FAILED, CANCELLED
     external_reference VARCHAR(200),
