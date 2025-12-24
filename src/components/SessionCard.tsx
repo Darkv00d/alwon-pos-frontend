@@ -66,8 +66,8 @@ export const SessionCard: React.FC<SessionCardProps> = ({
                 </div>
             </div>
             <div className="flex justify-between items-center pt-4 border-t border-border">
-                <span className="text-sm text-muted">🛒 {itemCount} items</span>
-                <span className="text-3xl font-bold">${totalAmount.toLocaleString('es-CO')}</span>
+                <span className="text-sm text-muted">🛒 {itemCount ?? 0} items</span>
+                <span className="text-3xl font-bold">${(totalAmount ?? 0).toLocaleString('es-CO')}</span>
             </div>
         </div>
     );

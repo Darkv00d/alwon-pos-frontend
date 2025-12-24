@@ -48,7 +48,7 @@ export const sessionApi = {
     },
 
     closeSession: async (sessionId: string): Promise<void> => {
-        await apiClient.delete(`/sessions/${sessionId}`);
+        await apiClient.post(`/sessions/${sessionId}/close`);
     },
 
     suspendSession: async (sessionId: string): Promise<void> => {
@@ -79,8 +79,8 @@ export const cartApi = {
         itemId: string,
         quantity: number
     ): Promise<ShoppingCart> => {
-        const { data } = await apiClient.put<ShoppingCart>(
-            `/carts/${sessionId}/items/${itemId}/quantity`,
+        const { data } = await apiClient.patch<ShoppingCart>(
+            `/carts/${sessionId}/items/${itemId}`,
             { quantity }
         );
         return data;
@@ -109,7 +109,7 @@ export const productApi = {
 
     searchProducts: async (query: string): Promise<Product[]> => {
         const { data } = await apiClient.get<Product[]>(`/products/search`, {
-            params: { q: query }
+            params: { query }
         });
         return data;
     },
@@ -160,17 +160,22 @@ export const accessApi = {
 // ===================================
 
 export const cameraApi = {
-    recognizeFace: async (imageData: Blob): Promise<any> => {
-        const formData = new FormData();
-        formData.append('image', imageData);
-        const { data } = await apiClient.post('/camera/facial-recognition', formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+    recognizeFace: async (sessionId: string, imageData: string, mimeType: string = 'image/jpeg'): Promise<any> => {
+        const { data } = await apiClient.post('/camera/facial-recognition', {
+            sessionId,
+            imageData, // Base64 encoded
+            mimeType
         });
         return data;
     },
 
-    getEvidence: async (sessionId: string): Promise<any> => {
-        const { data } = await apiClient.get(`/camera/evidence/${sessionId}`);
+    getEvidence: async (sessionId: string): Promise<any[]> => {
+        const { data } = await apiClient.get(`/camera/evidence/session/${sessionId}`);
+        return data;
+    },
+
+    getEvidenceByType: async (sessionId: string, evidenceType: string): Promise<any[]> => {
+        const { data } = await apiClient.get(`/camera/evidence/session/${sessionId}/type/${evidenceType}`);
         return data;
     }
 };
