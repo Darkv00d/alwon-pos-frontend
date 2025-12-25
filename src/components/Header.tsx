@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { OperatorAuthModal } from './OperatorAuthModal';
+import { useAuthStore } from '@/store/useAuthStore';
 
-interface HeaderProps {
-    operatorName?: string;
-}
-
-export const Header: React.FC<HeaderProps> = ({ operatorName: initialOperatorName = 'Operador' }) => {
+export const Header: React.FC = () => {
     const [currentTime, setCurrentTime] = React.useState(new Date());
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [operatorName, setOperatorName] = useState(initialOperatorName);
+
+    const { isAuthenticated, operator, logout } = useAuthStore();
 
     React.useEffect(() => {
         const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -26,14 +23,7 @@ export const Header: React.FC<HeaderProps> = ({ operatorName: initialOperatorNam
         }
     };
 
-    const handleAuthenticated = (username: string) => {
-        setIsAuthenticated(true);
-        setOperatorName(username);
-        setIsAuthModalOpen(false);
-    };
-
     const handleCashClosure = () => {
-        // TODO: Implement cash closure logic when backend is ready
         alert('🔄 Función de Cierre de Caja\n\nEsta funcionalidad se implementará próximamente con el backend.');
     };
 
@@ -66,12 +56,12 @@ export const Header: React.FC<HeaderProps> = ({ operatorName: initialOperatorNam
                         <button
                             onClick={handleOperatorClick}
                             className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${isAuthenticated
-                                    ? 'bg-blue-600 text-white'
-                                    : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+                                ? 'bg-blue-600 text-white'
+                                : 'hover:bg-gray-100 dark:hover:bg-gray-800'
                                 }`}
-                            title={isAuthenticated ? 'Operador autenticado' : 'Click para autenticar'}
+                            title={isAuthenticated ? operator?.name : 'Click para autenticar'}
                         >
-                            👤 {operatorName}
+                            👤 {operator?.name || 'Operador'}
                         </button>
                     </div>
                 </div>
@@ -80,7 +70,6 @@ export const Header: React.FC<HeaderProps> = ({ operatorName: initialOperatorNam
             <OperatorAuthModal
                 isOpen={isAuthModalOpen}
                 onClose={() => setIsAuthModalOpen(false)}
-                onAuthenticated={handleAuthenticated}
             />
         </>
     );

@@ -15,7 +15,6 @@ interface SessionCardProps {
 }
 
 export const SessionCard: React.FC<SessionCardProps> = ({
-    sessionId,
     clientType,
     customerName,
     pinCode,
@@ -26,57 +25,167 @@ export const SessionCard: React.FC<SessionCardProps> = ({
     totalAmount,
     onClick
 }) => {
-    const borderClass = {
-        [ClientType.FACIAL]: 'border-facial',
-        [ClientType.PIN]: 'border-pin',
-        [ClientType.NO_ID]: 'border-no-id'
-    }[clientType];
+    // Neumorphism Design - Soft UI with embossed effect
+    const colorSchemes = {
+        [ClientType.FACIAL]: {
+            borderColor: '#22c55e', // Green accent
+            badge: 'FACIAL'
+        },
+        [ClientType.PIN]: {
+            borderColor: '#eab308', // Yellow accent
+            badge: 'PIN'
+        },
+        [ClientType.NO_ID]: {
+            borderColor: '#ef4444', // Red accent
+            badge: 'NO ID'
+        }
+    };
+
+    const scheme = colorSchemes[clientType];
 
     const getDisplayName = () => {
         if (clientType === ClientType.FACIAL && customerName) return customerName;
+        if (clientType === ClientType.PIN && customerName) return customerName;
         if (clientType === ClientType.PIN && pinCode) return `PIN-${pinCode}`;
         return 'No Identificado';
     };
 
-    const getStatusLabel = () => {
-        if (clientType === ClientType.FACIAL) return '🟢 FACIAL';
-        if (clientType === ClientType.PIN) return '🟡 PIN TEMPORAL';
-        return '🔴 SIN IDENTIFICAR';
-    };
-
-    const getAvatarContent = () => {
-        if (clientType === ClientType.PIN) return '🔑';
-        if (clientType === ClientType.NO_ID) return '?';
-        if (customerPhotoUrl) {
-            return <img src={customerPhotoUrl} alt={customerName} className="w-full h-full object-cover" />;
-        }
-        return customerName?.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const shouldShowPhoto = () => {
+        if (clientType === ClientType.PIN) return false;
+        return (clientType === ClientType.FACIAL || clientType === ClientType.NO_ID) && customerPhotoUrl;
     };
 
     return (
         <div
-            className={`card ${borderClass} cursor-pointer transition-all hover:shadow-lg hover:-translate-y-1`}
+            className="rounded-2xl cursor-pointer transition-all duration-300 overflow-hidden"
+            style={{
+                background: '#ffffff',
+                // Neumorphism dual shadows: light (top-left) + dark (bottom-right)
+                boxShadow: '8px 8px 15px rgba(163, 177, 198, 0.6), -8px -8px 15px rgba(255, 255, 255, 0.5)',
+                minHeight: '200px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                gap: '20px',
+                padding: '24px',
+                position: 'relative',
+                borderLeft: `4px solid ${scheme.borderColor}`
+            }}
             onClick={onClick}
+            onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '12px 12px 20px rgba(163, 177, 198, 0.6), -12px -12px 20px rgba(255, 255, 255, 0.5)';
+            }}
+            onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '8px 8px 15px rgba(163, 177, 198, 0.6), -8px -8px 15px rgba(255, 255, 255, 0.5)';
+            }}
         >
-            <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 flex items-center justify-center text-white text-2xl font-semibold overflow-hidden">
-                    {getAvatarContent()}
+            {/* Left: Content */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                <h3 style={{
+                    color: '#2d3436',
+                    fontSize: '1.5rem',
+                    fontWeight: 600,
+                    marginBottom: '12px',
+                    lineHeight: 1.2
+                }}>
+                    {getDisplayName()}
+                </h3>
+
+                {(tower || apartment) && (
+                    <div style={{
+                        color: '#636e72',
+                        fontSize: '1.05rem',
+                        marginBottom: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px'
+                    }}>
+                        📍 {tower}{tower && apartment && '-'}{apartment}
+                    </div>
+                )}
+
+                <div style={{
+                    color: '#636e72',
+                    fontSize: '1.05rem',
+                    marginBottom: '8px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                }}>
+                    🛒 {itemCount ?? 0} productos
                 </div>
-                <div className="flex-1">
-                    <h3 className="text-lg font-semibold mb-1">{getDisplayName()}</h3>
-                    <p className="text-sm text-muted">
-                        {getStatusLabel()}
-                    </p>
-                    {(clientType === ClientType.FACIAL || clientType === ClientType.PIN) && (tower || apartment) && (
-                        <p className="text-xs text-muted mt-1">
-                            📍 {tower && `Torre ${tower}`}{tower && apartment && ' - '}{apartment && `Apto ${apartment}`}
-                        </p>
-                    )}
+
+                <div style={{
+                    display: 'inline-block',
+                    padding: '6px 14px',
+                    borderRadius: '20px',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    marginTop: '12px',
+                    background: '#dfe6e9',
+                    color: '#2d3436',
+                    width: 'fit-content'
+                }}>
+                    {scheme.badge}
+                </div>
+
+                <div style={{
+                    color: '#2d3436',
+                    fontSize: '2.2rem',
+                    fontWeight: 700,
+                    marginTop: '16px'
+                }}>
+                    ${(totalAmount ?? 0).toLocaleString('es-CO', { maximumFractionDigits: 0 })}
                 </div>
             </div>
-            <div className="flex justify-between items-center pt-4 border-t border-border">
-                <span className="text-sm text-muted">🛒 {itemCount ?? 0} items</span>
-                <span className="text-3xl font-bold">${(totalAmount ?? 0).toLocaleString('es-CO')}</span>
+
+            {/* Right: Photo (Circular) */}
+            <div style={{
+                width: '150px',
+                height: '150px',
+                flexShrink: 0,
+                borderRadius: '50%',
+                border: '4px solid rgba(255, 255, 255, 0.5)',
+                overflow: 'hidden',
+                position: 'relative',
+                // Subtle shadow on photo
+                boxShadow: '4px 4px 8px rgba(163, 177, 198, 0.4), -4px -4px 8px rgba(255, 255, 255, 0.3)'
+            }}>
+                {shouldShowPhoto() ? (
+                    <img
+                        src={customerPhotoUrl}
+                        alt={getDisplayName()}
+                        style={{
+                            width: '100%',
+                            height: '100%',
+                            objectFit: 'cover'
+                        }}
+                    />
+                ) : (
+                    // Generic silhouette for PIN users - White SVG with gray 3D effect
+                    <div style={{
+                        width: '100%',
+                        height: '100%',
+                        background: 'linear-gradient(135deg, #00bfff 0%, #0099cc 100%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center'
+                    }}>
+                        <svg
+                            width="100"
+                            height="100"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                            style={{
+                                filter: 'drop-shadow(2px 2px 3px rgba(80, 80, 80, 0.4)) drop-shadow(-1px -1px 1px rgba(200, 200, 200, 0.2))'
+                            }}
+                        >
+                            <circle cx="12" cy="8" r="4" fill="white" />
+                            <path d="M4 20c0-4 3.5-7 8-7s8 3 8 7" stroke="white" strokeWidth="2" fill="white" strokeLinecap="round" />
+                        </svg>
+                    </div>
+                )}
             </div>
         </div>
     );

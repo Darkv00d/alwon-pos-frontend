@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppStore } from '@/store/appStore';
-import { sessionApi } from '@/services/api';
+import { sessionApi, cartApi } from '@/services/api';
 import { SessionCard } from '@/components/SessionCard';
 import { Header } from '@/components/Header';
 
@@ -18,7 +18,30 @@ export const Dashboard: React.FC = () => {
         try {
             setIsLoading(true);
             const activeSessions = await sessionApi.getActiveSessions();
-            setSessions(activeSessions);
+
+            // Fetch cart data for each session
+            const sessionsWithCarts = await Promise.all(
+                activeSessions.map(async (session) => {
+                    try {
+                        const cart = await cartApi.getCart(session.sessionId);
+                        return {
+                            ...session,
+                            itemCount: cart.itemsCount || 0,
+                            totalAmount: cart.totalAmount || 0
+                        };
+                    } catch (error) {
+                        // If cart doesn't exist or errors, use defaults
+                        console.warn(`No cart for session ${session.sessionId}:`, error);
+                        return {
+                            ...session,
+                            itemCount: 0,
+                            totalAmount: 0
+                        };
+                    }
+                })
+            );
+
+            setSessions(sessionsWithCarts);
         } catch (error) {
             console.error('Error loading sessions:', error);
         } finally {
@@ -46,7 +69,7 @@ export const Dashboard: React.FC = () => {
         <div className="container">
             <Header operatorName={operator?.name} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-2 gap-6 mb-6">
                 {sessions.map((session) => (
                     <SessionCard
                         key={session.sessionId}
@@ -55,6 +78,8 @@ export const Dashboard: React.FC = () => {
                         customerName={session.customerName}
                         pinCode={session.pinCode}
                         customerPhotoUrl={session.customerPhotoUrl}
+                        tower={session.tower}
+                        apartment={session.apartment}
                         itemCount={session.itemCount}
                         totalAmount={session.totalAmount}
                         onClick={() => handleSessionClick(session)}
