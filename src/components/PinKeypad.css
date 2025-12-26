@@ -1,0 +1,77 @@
+.keypad-content {
+    max-width: 450px;
+}
+
+.pin-input-display {
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 20px;
+    color: var(--text-color, #2d3436);
+    margin: 30px 0;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.key {
+    aspect-ratio: 1;
+    border: 2px solid var(--border-color, #dfe6e9);
+    border-radius: 12px;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-color, #2d3436);
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+}
+
+.key:hover:not(:disabled) {
+    background: var(--surface-color, #f8f9fa);
+    border-color: var(--primary-color, #667eea);
+    transform: scale(1.05);
+}
+
+.key:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.key:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.key.special {
+    background: var(--surface-color, #f1f3f5);
+    font-size: 1.4rem;
+}
+
+.key.special:hover:not(:disabled) {
+    background: #e9ecef;
+}
+
+@media (max-width: 500px) {
+    .keypad {
+        gap: 8px;
+    }
+
+    .key {
+        font-size: 1.5rem;
+    }
+
+    .pin-input-display {
+        font-size: 2rem;
+        letter-spacing: 15px;
+    }
+}

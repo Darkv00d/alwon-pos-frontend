@@ -1,0 +1,59 @@
+.cart-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn {
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* PAGAR Button - Extra Large */
+.btn.btn-primary {
+    background: hsl(140 70% 45%);
+    color: white;
+    font-size: 28px;
+    padding: 80px 24px;
+}
+
+.btn.btn-primary:hover:not(:disabled) {
+    background: hsl(140 70% 40%);
+    transform: scale(1.02);
+}
+
+/* Suspender Button */
+.btn.btn-secondary {
+    background: hsl(220 15% 92%);
+    color: hsl(220 10% 20%);
+    font-size: 18px;
+    padding: 16px 24px;
+}
+
+.btn.btn-secondary:hover:not(:disabled) {
+    background: hsl(220 15% 85%);
+}
+
+/* Cancelar Button */
+.btn.btn-danger {
+    background: hsl(0 75% 95%);
+    color: hsl(0 75% 40%);
+    font-size: 18px;
+    padding: 16px 24px;
+}
+
+.btn.btn-danger:hover:not(:disabled) {
+    background: hsl(0 75% 90%);
+}

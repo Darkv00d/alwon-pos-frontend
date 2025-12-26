@@ -17,9 +17,13 @@ export const Dashboard: React.FC = () => {
     const loadSessions = async () => {
         try {
             setIsLoading(true);
-            const activeSessions = await sessionApi.getActiveSessions();
 
-            // Fetch cart data for each session
+            // TEMPORARY: Skip API and use mock data directly
+            const { mockSessions } = await import('@/data/mockData');
+            setSessions(mockSessions);
+
+            /* Commented for performance - Restore when backend is ready
+            const activeSessions = await sessionApi.getActiveSessions();
             const sessionsWithCarts = await Promise.all(
                 activeSessions.map(async (session) => {
                     try {
@@ -30,7 +34,6 @@ export const Dashboard: React.FC = () => {
                             totalAmount: cart.totalAmount || 0
                         };
                     } catch (error) {
-                        // If cart doesn't exist or errors, use defaults
                         console.warn(`No cart for session ${session.sessionId}:`, error);
                         return {
                             ...session,
@@ -40,10 +43,10 @@ export const Dashboard: React.FC = () => {
                     }
                 })
             );
-
             setSessions(sessionsWithCarts);
+            */
         } catch (error) {
-            console.error('Error loading sessions:', error);
+            console.error('Error loading mock data:', error);
         } finally {
             setIsLoading(false);
         }

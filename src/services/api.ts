@@ -1,7 +1,8 @@
 import axios from 'axios';
 import type { CustomerSession, ShoppingCart, Product, PaymentTransaction, ApiResponse } from '@/types';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+// Vacío para usar paths relativos que serán manejados por el proxy de Vite
+const API_BASE_URL = '';
 
 const apiClient = axios.create({
     baseURL: API_BASE_URL,

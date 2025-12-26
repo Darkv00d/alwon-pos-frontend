@@ -1,42 +1,125 @@
-import create from 'zustand';
+import { create } from 'zustand';
 
-interface Operator {
-    id: number;
+export interface Operator {
+    id: string;
     username: string;
-    name: string;
+    fullName: string;
+    email: string;
+    phone: string;
     role: string;
-    verificationCode: string;
 }
 
-interface AuthStore {
+export interface AuthNotifications {
+    whatsapp: {
+        sent: boolean;
+        maskedPhone: string;
+    };
+    email: {
+        sent: boolean;
+        maskedEmail: string;
+    };
+}
+
+interface AuthState {
+    // State
     operator: Operator | null;
     token: string | null;
-    isAuthenticated: boolean;
+    isPinActive: boolean;
+    pinExpiresAt: string | null;
+    pinAttempts: number;
+    isLoading: boolean;
+    error: string | null;
 
-    login: (token: string, operator: Operator) => void;
+    // Modal states
+    showLoginModal: boolean;
+    showPinDisplayModal: boolean;
+    showPinKeypadModal: boolean;
+    showAdminMenuModal: boolean;
+
+    // Last login response
+    lastPinGenerated: string | null;
+    lastNotifications: AuthNotifications | null;
+
+    // Actions
+    setShowLoginModal: (show: boolean) => void;
+    setShowPinDisplayModal: (show: boolean) => void;
+    setShowPinKeypadModal: (show: boolean) => void;
+    setShowAdminMenuModal: (show: boolean) => void;
+
+    setOperator: (operator: Operator | null) => void;
+    setToken: (token: string | null) => void;
+    setPinActive: (active: boolean) => void;
+    setPinExpiresAt: (expiresAt: string | null) => void;
+    incrementPinAttempts: () => void;
+    resetPinAttempts: () => void;
+    setLoading: (loading: boolean) => void;
+    setError: (error: string | null) => void;
+
+    setLastPinGenerated: (pin: string) => void;
+    setLastNotifications: (notifications: AuthNotifications) => void;
+
     logout: () => void;
-    verifyCode: (code: string) => boolean;
+    reset: () => void;
 }
 
-export const useAuthStore = create<AuthStore>((set, get) => ({
+const initialState = {
     operator: null,
-    token: localStorage.getItem('authToken'),
-    isAuthenticated: !!localStorage.getItem('authToken'),
+    token: null,
+    isPinActive: false,
+    pinExpiresAt: null,
+    pinAttempts: 0,
+    isLoading: false,
+    error: null,
+    showLoginModal: false,
+    showPinDisplayModal: false,
+    showPinKeypadModal: false,
+    showAdminMenuModal: false,
+    lastPinGenerated: null,
+    lastNotifications: null,
+};
 
-    login: (token, operator) => {
-        localStorage.setItem('authToken', token);
-        localStorage.setItem('operator', JSON.stringify(operator));
-        set({ token, operator, isAuthenticated: true });
+export const useAuthStore = create<AuthState>((set) => ({
+    ...initialState,
+
+    // Modal actions
+    setShowLoginModal: (show) => set({ showLoginModal: show }),
+    setShowPinDisplayModal: (show) => set({ showPinDisplayModal: show }),
+    setShowPinKeypadModal: (show) => set({ showPinKeypadModal: show }),
+    setShowAdminMenuModal: (show) => set({ showAdminMenuModal: show }),
+
+    // Data actions
+    setOperator: (operator) => set({ operator }),
+    setToken: (token) => {
+        // Save token to localStorage for persistence
+        if (token) {
+            localStorage.setItem('auth_token', token);
+        } else {
+            localStorage.removeItem('auth_token');
+        }
+        set({ token });
     },
+    setPinActive: (active) => set({ isPinActive: active }),
+    setPinExpiresAt: (expiresAt) => set({ pinExpiresAt: expiresAt }),
+    incrementPinAttempts: () => set((state) => ({
+        pinAttempts: state.pinAttempts + 1
+    })),
+    resetPinAttempts: () => set({ pinAttempts: 0 }),
+    setLoading: (loading) => set({ isLoading: loading }),
+    setError: (error) => set({ error }),
 
-    logout: () => {
-        localStorage.removeItem('authToken');
-        localStorage.removeItem('operator');
-        set({ token: null, operator: null, isAuthenticated: false });
-    },
+    setLastPinGenerated: (pin) => set({ lastPinGenerated: pin }),
+    setLastNotifications: (notifications) => set({ lastNotifications: notifications }),
 
-    verifyCode: (code: string) => {
-        const { operator } = get();
-        return operator?.verificationCode === code;
-    }
+    // Logout
+    logout: () => set({
+        ...initialState,
+        // Close all modals
+        showLoginModal: false,
+        showPinDisplayModal: false,
+        showPinKeypadModal: false,
+        showAdminMenuModal: false,
+    }),
+
+    // Reset (for testing)
+    reset: () => set(initialState),
 }));

@@ -1,0 +1,51 @@
+/* CartView.css - Tablet-optimized 2-column layout */
+
+.cart-view-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.products-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.products-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: hsl(220 10% 20%);
+    margin-bottom: 8px;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+    .cart-view-main {
+        grid-template-columns: 1fr;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+}

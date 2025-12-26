@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { OperatorAuthModal } from './OperatorAuthModal';
-import { useAuthStore } from '@/store/useAuthStore';
+import React from 'react';
+import { OperatorButton } from './OperatorButton';
+import { LoginModal } from './LoginModal';
+import { PinDisplayModal } from './PinDisplayModal';
+import { PinKeypad } from './PinKeypad';
+import { AdminMenuModal } from './AdminMenuModal';
+import { useAuthStore } from '../store/useAuthStore';
 
 export const Header: React.FC = () => {
     const [currentTime, setCurrentTime] = React.useState(new Date());
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-
-    const { isAuthenticated, operator, logout } = useAuthStore();
+    const { showLoginModal, showPinDisplayModal, showPinKeypadModal, showAdminMenuModal } = useAuthStore();
 
     React.useEffect(() => {
         const timer = setInterval(() => setCurrentTime(new Date()), 1000);
@@ -15,16 +17,6 @@ export const Header: React.FC = () => {
 
     const formatTime = (date: Date) => {
         return date.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
-    };
-
-    const handleOperatorClick = () => {
-        if (!isAuthenticated) {
-            setIsAuthModalOpen(true);
-        }
-    };
-
-    const handleCashClosure = () => {
-        alert('🔄 Función de Cierre de Caja\n\nEsta funcionalidad se implementará próximamente con el backend.');
     };
 
     return (
@@ -43,34 +35,17 @@ export const Header: React.FC = () => {
                     <div className="flex items-center gap-4 text-sm text-muted">
                         <span>🕐 {formatTime(currentTime)}</span>
 
-                        {isAuthenticated && (
-                            <button
-                                onClick={handleCashClosure}
-                                className="flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold transition-all hover:shadow-lg"
-                                title="Cierre de Caja"
-                            >
-                                💰 Cierre Caja
-                            </button>
-                        )}
-
-                        <button
-                            onClick={handleOperatorClick}
-                            className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all ${isAuthenticated
-                                ? 'bg-blue-600 text-white'
-                                : 'hover:bg-gray-100 dark:hover:bg-gray-800'
-                                }`}
-                            title={isAuthenticated ? operator?.name : 'Click para autenticar'}
-                        >
-                            👤 {operator?.name || 'Operador'}
-                        </button>
+                        {/* Operator Button - Opens authentication flow */}
+                        <OperatorButton />
                     </div>
                 </div>
             </div>
 
-            <OperatorAuthModal
-                isOpen={isAuthModalOpen}
-                onClose={() => setIsAuthModalOpen(false)}
-            />
+            {/* Conditional rendering - Only render modals when they're active */}
+            {showLoginModal && <LoginModal />}
+            {showPinDisplayModal && <PinDisplayModal />}
+            {showPinKeypadModal && <PinKeypad />}
+            {showAdminMenuModal && <AdminMenuModal />}
         </>
     );
 };

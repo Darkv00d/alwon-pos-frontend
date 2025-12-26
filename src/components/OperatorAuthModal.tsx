@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '@/store/useAuthStore';
-import axios from 'axios';
+import apiClient from '@/services/api';
 
 interface OperatorAuthModalProps {
     isOpen: boolean;
@@ -21,7 +21,7 @@ export const OperatorAuthModal: React.FC<OperatorAuthModalProps> = ({ isOpen, on
         setIsLoading(true);
 
         try {
-            const response = await axios.post('http://localhost:8088/api/auth/login', {
+            const response = await apiClient.post('/auth/login', {
                 username,
                 password
             });
