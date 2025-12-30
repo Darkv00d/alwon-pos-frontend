@@ -2,44 +2,34 @@ import React from 'react';
 import './CartActions.css';
 
 interface CartActionsProps {
-    sessionId: string;
     onPay: () => void;
-    onSuspend: () => void;
     onCancel: () => void;
     disabled?: boolean;
 }
 
 export const CartActions: React.FC<CartActionsProps> = ({
-    sessionId,
     onPay,
-    onSuspend,
     onCancel,
     disabled = false
 }) => {
     return (
         <div className="cart-actions">
+            {/* US-018: Simplified Actions - Prominent PAGAR Button */}
             <button
-                className="btn btn-primary"
+                className="btn-pay-primary"
                 onClick={onPay}
                 disabled={disabled}
             >
                 💳 PAGAR
             </button>
 
+            {/* US-018: Secondary Action - CANCELAR */}
             <button
-                className="btn btn-secondary"
-                onClick={onSuspend}
-                disabled={disabled}
-            >
-                ⏸️ Suspender
-            </button>
-
-            <button
-                className="btn btn-danger"
+                className="btn-cancel"
                 onClick={onCancel}
                 disabled={disabled}
             >
-                ❌ Cancelar
+                ❌ CANCELAR
             </button>
         </div>
     );

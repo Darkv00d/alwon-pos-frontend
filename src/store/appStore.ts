@@ -33,7 +33,7 @@ interface AppStore {
     reset: () => void;
 }
 
-export const useAppStore = create<AppStore>((set) => ({
+export const useAppStore = create<AppStore>((set, get) => ({
     // Estado inicial
     sessions: [],
     selectedSession: null,
@@ -69,8 +69,12 @@ export const useAppStore = create<AppStore>((set) => ({
 
     setCurrentCart: (cart) => set({ currentCart: cart }),
 
-    updateCartItem: (itemId, quantity) => set((state) => {
-        if (!state.currentCart) return state;
+    updateCartItem: (itemId, quantity) => {
+        const state = get();
+        if (!state.currentCart) return;
+
+        // Optimistic update locally first
+        const originalItems = [...state.currentCart.items];
 
         const updatedItems = state.currentCart.items.map((item) =>
             item.id === itemId
@@ -81,32 +85,61 @@ export const useAppStore = create<AppStore>((set) => ({
         const subtotal = updatedItems.reduce((sum, item) => sum + item.totalPrice, 0);
         const totalAmount = subtotal - (state.currentCart.discountAmount || 0);
 
-        return {
+        set({
             currentCart: {
                 ...state.currentCart,
                 items: updatedItems,
                 subtotal,
                 totalAmount
             }
-        };
-    }),
+        });
 
-    removeCartItem: (itemId) => set((state) => {
-        if (!state.currentCart) return state;
+        // Then try to sync with backend
+        import('@/services/api').then(({ cartApi }) => {
+            if (state.currentCart) {
+                cartApi.updateItemQuantity(state.currentCart.sessionId, itemId, quantity)
+                    .then(updatedCart => {
+                        set({ currentCart: updatedCart });
+                    })
+                    .catch(err => {
+                        console.error('Failed to update item in backend:', err);
+                        // Optional: Revert on error or just warn
+                    });
+            }
+        });
+    },
 
+    removeCartItem: (itemId) => {
+        const state = get();
+        if (!state.currentCart) return;
+
+        // Optimistic update
         const updatedItems = state.currentCart.items.filter((item) => item.id !== itemId);
         const subtotal = updatedItems.reduce((sum, item) => sum + item.totalPrice, 0);
         const totalAmount = subtotal - (state.currentCart.discountAmount || 0);
 
-        return {
+        set({
             currentCart: {
                 ...state.currentCart,
                 items: updatedItems,
                 subtotal,
                 totalAmount
             }
-        };
-    }),
+        });
+
+        // Sync with backend
+        import('@/services/api').then(({ cartApi }) => {
+            if (state.currentCart) {
+                cartApi.removeItem(state.currentCart.sessionId, itemId)
+                    .then(updatedCart => {
+                        set({ currentCart: updatedCart });
+                    })
+                    .catch(err => {
+                        console.error('Failed to remove item in backend:', err);
+                    });
+            }
+        });
+    },
 
     setOperator: (operator) => set({ operator }),
 

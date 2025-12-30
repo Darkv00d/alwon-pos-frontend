@@ -62,6 +62,30 @@ export default defineConfig({
       '/api': {
         target: 'http://localhost:8088',
         changeOrigin: true
+      },
+      '/sessions': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      },
+      '/carts': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      },
+      '/products': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      },
+      '/payments': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      },
+      '/access': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
+      },
+      '/camera': {
+        target: 'http://localhost:8080',
+        changeOrigin: true
       }
     }
   }

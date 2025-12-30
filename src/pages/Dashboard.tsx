@@ -7,7 +7,7 @@ import { Header } from '@/components/Header';
 
 export const Dashboard: React.FC = () => {
     const navigate = useNavigate();
-    const { sessions, setSessions, setSelectedSession, operator } = useAppStore();
+    const { sessions, setSessions, setSelectedSession, operator, setOperator } = useAppStore();
     const [isLoading, setIsLoading] = React.useState(true);
 
     React.useEffect(() => {
@@ -18,35 +18,53 @@ export const Dashboard: React.FC = () => {
         try {
             setIsLoading(true);
 
-            // TEMPORARY: Skip API and use mock data directly
-            const { mockSessions } = await import('@/data/mockData');
-            setSessions(mockSessions);
+            try {
+                // Try to fetch from backend first
+                const activeSessions = await sessionApi.getActiveSessions();
 
-            /* Commented for performance - Restore when backend is ready
-            const activeSessions = await sessionApi.getActiveSessions();
-            const sessionsWithCarts = await Promise.all(
-                activeSessions.map(async (session) => {
-                    try {
-                        const cart = await cartApi.getCart(session.sessionId);
-                        return {
-                            ...session,
-                            itemCount: cart.itemsCount || 0,
-                            totalAmount: cart.totalAmount || 0
-                        };
-                    } catch (error) {
-                        console.warn(`No cart for session ${session.sessionId}:`, error);
-                        return {
-                            ...session,
-                            itemCount: 0,
-                            totalAmount: 0
-                        };
-                    }
-                })
-            );
-            setSessions(sessionsWithCarts);
-            */
+                // Fetch cart for each session to get totals and items
+                const sessionsWithDetails = await Promise.all(
+                    activeSessions.map(async (session) => {
+                        try {
+                            const cart = await cartApi.getCart(session.sessionId);
+                            return {
+                                ...session,
+                                itemCount: cart.items?.reduce((sum, item) => sum + item.quantity, 0) || 0,
+                                totalAmount: cart.totalAmount || 0,
+                                cartItems: cart.items?.slice(0, 3).map(item => ({
+                                    productName: item.productName,
+                                    productImage: item.productImage || '🛒',
+                                    quantity: item.quantity
+                                }))
+                            };
+                        } catch (err) {
+                            console.warn(`Could not load cart for session ${session.sessionId}`, err);
+                            return { ...session, itemCount: 0, totalAmount: 0 };
+                        }
+                    })
+                );
+
+                setSessions(sessionsWithDetails);
+
+                // Also try to load operator from localStorage or backend if available
+                const storedOp = localStorage.getItem('operator');
+                if (storedOp) {
+                    setOperator(JSON.parse(storedOp));
+                } else {
+                    const { mockOperator } = await import('@/data/mockData');
+                    setOperator(mockOperator);
+                }
+
+            } catch (error) {
+                console.warn('Backend unavailable, falling back to mock data:', error);
+
+                // Fallback to mock data
+                const { mockSessions, mockOperator } = await import('@/data/mockData');
+                setSessions(mockSessions);
+                setOperator(mockOperator);
+            }
         } catch (error) {
-            console.error('Error loading mock data:', error);
+            console.error('Error loading sessions:', error);
         } finally {
             setIsLoading(false);
         }
@@ -60,7 +78,7 @@ export const Dashboard: React.FC = () => {
     if (isLoading) {
         return (
             <div className="container">
-                <Header operatorName={operator?.name} />
+                <Header />
                 <div className="flex items-center justify-center h-96">
                     <div className="text-xl text-muted">Cargando sesiones...</div>
                 </div>
@@ -70,7 +88,7 @@ export const Dashboard: React.FC = () => {
 
     return (
         <div className="container">
-            <Header operatorName={operator?.name} />
+            <Header />
 
             <div className="grid grid-cols-2 gap-6 mb-6">
                 {sessions.map((session) => (
@@ -85,6 +103,7 @@ export const Dashboard: React.FC = () => {
                         apartment={session.apartment}
                         itemCount={session.itemCount}
                         totalAmount={session.totalAmount}
+                        cartItems={session.cartItems}
                         onClick={() => handleSessionClick(session)}
                     />
                 ))}

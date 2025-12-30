@@ -24,7 +24,7 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
 
             <div className="summary-row">
                 <span className="summary-label">🛒 Total de productos:</span>
-                <span className="summary-value">{totalItems} items</span>
+                <span className="summary-items-count">{totalItems} items</span>
             </div>
 
             <div className="summary-row">
@@ -36,6 +36,9 @@ export const CartSummary: React.FC<CartSummaryProps> = ({
                 <span className="summary-label">📊 IVA (19%):</span>
                 <span className="summary-value">{formatCurrency(taxAmount)}</span>
             </div>
+
+            {/* US-011: Visual divider before total */}
+            <div className="summary-divider"></div>
 
             <div className="summary-row summary-total">
                 <span className="summary-label">💰 TOTAL A PAGAR:</span>

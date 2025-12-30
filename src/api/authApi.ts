@@ -40,9 +40,19 @@ export interface LoginRequest {
     password: string;
 }
 
+// Backend sends 'name' but frontend uses 'fullName'
+interface BackendOperator {
+    id: string;
+    username: string;
+    name: string; // Backend field
+    email: string;
+    phone: string;
+    role: string;
+}
+
 export interface LoginResponse {
     success: boolean;
-    operator: Operator;
+    operator: BackendOperator; // Backend format
     token: string;
     pin: string;
     pinExpiresAt: string;

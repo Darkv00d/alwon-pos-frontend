@@ -39,16 +39,19 @@ export const CartView: React.FC = () => {
         try {
             setIsLoading(true);
 
-            // TEMPORARY: Skip API and use mock cart directly
-            const { mockCart } = await import('@/data/mockData');
-            setCurrentCart({ ...mockCart, sessionId });
+            try {
+                // Try to load from backend first
+                const cart = await cartApi.getCart(sessionId);
+                setCurrentCart(cart);
+            } catch (error) {
+                console.warn('Backend unavailable, falling back to mock cart:', error);
 
-            /* Commented for performance - Restore when backend is ready
-            const cart = await cartApi.getCart(sessionId);
-            setCurrentCart(cart);
-            */
+                // Fallback to mock data
+                const { mockCart } = await import('@/data/mockData');
+                setCurrentCart({ ...mockCart, sessionId });
+            }
         } catch (error) {
-            console.error('Error loading mock cart:', error);
+            console.error('Error loading cart:', error);
         } finally {
             setIsLoading(false);
         }
@@ -71,11 +74,6 @@ export const CartView: React.FC = () => {
 
     const handleContinueToPayment = () => {
         navigate(`/payment/${sessionId}`);
-    };
-
-    const handleSuspend = () => {
-        alert('Pago suspendido');
-        navigate('/');
     };
 
     const handleCancel = () => {
@@ -143,7 +141,7 @@ export const CartView: React.FC = () => {
 
     return (
         <div className="container">
-            <Header operatorName={operator?.name} />
+            <Header />
 
             {/* Cart Header */}
             <div className="card mb-6">
@@ -178,8 +176,6 @@ export const CartView: React.FC = () => {
             <div className="cart-view-main">
                 {/* Left: Products Section */}
                 <div className="products-section">
-                    <h2 className="products-title">🛒 Productos en el Carrito</h2>
-
                     {/* Products Grid (3 columns) */}
                     <div className="products-grid">
                         {paginatedItems.map((item: any) => (
@@ -218,11 +214,9 @@ export const CartView: React.FC = () => {
                         totalAmount={summary.totalAmount}
                     />
 
-                    {/* Action Buttons */}
+                    {/* US-018: Simplified Action Buttons */}
                     <CartActions
-                        sessionId={currentCart.sessionId}
                         onPay={handleContinueToPayment}
-                        onSuspend={handleSuspend}
                         onCancel={handleCancel}
                     />
                 </div>

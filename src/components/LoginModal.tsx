@@ -45,8 +45,18 @@ export const LoginModal: React.FC = () => {
             const response = await authApi.login({ username, password });
 
             if (response.success) {
+                // Map backend operator fields to frontend format
+                const operatorData = {
+                    id: response.operator.id,
+                    username: response.operator.username,
+                    fullName: response.operator.name, // Backend sends 'name', frontend expects 'fullName'
+                    email: response.operator.email,
+                    phone: response.operator.phone,
+                    role: response.operator.role
+                };
+
                 // Save operator data
-                setOperator(response.operator);
+                setOperator(operatorData);
                 setToken(response.token);
                 setPinActive(true);
                 setPinExpiresAt(response.pinExpiresAt);

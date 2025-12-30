@@ -25,6 +25,11 @@ export interface CustomerSession {
     createdAt: string;
     itemCount: number;
     totalAmount: number;
+    cartItems?: Array<{
+        productName: string;
+        productImage: string;
+        quantity: number;
+    }>;
 }
 
 // Producto en Carrito

@@ -11,6 +11,11 @@ interface SessionCardProps {
     apartment?: string;
     itemCount: number;
     totalAmount: number;
+    cartItems?: Array<{
+        productName: string;
+        productImage: string;
+        quantity: number;
+    }>;
     onClick: () => void;
 }
 
@@ -23,6 +28,7 @@ export const SessionCard: React.FC<SessionCardProps> = ({
     apartment,
     itemCount,
     totalAmount,
+    cartItems,
     onClick
 }) => {
     // Neumorphism Design - Soft UI with embossed effect
@@ -112,8 +118,55 @@ export const SessionCard: React.FC<SessionCardProps> = ({
                     alignItems: 'center',
                     gap: '8px'
                 }}>
-                    🛒 {itemCount ?? 0} productos
+                    🛒 {(itemCount ?? 0)} productos
                 </div>
+
+                {/* US-001: Product Preview for NO_ID Customers */}
+                {clientType === ClientType.NO_ID && cartItems && cartItems.length > 0 && (
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                        marginTop: '8px',
+                        marginBottom: '12px'
+                    }}>
+                        {cartItems.slice(0, 3).map((item, idx) => (
+                            <div
+                                key={idx}
+                                style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '50%',
+                                    background: 'hsl(220 15% 95%)',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '24px',
+                                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+                                }}
+                                title={item.productName}
+                            >
+                                {item.productImage}
+                            </div>
+                        ))}
+                        {cartItems.length > 3 && (
+                            <div style={{
+                                width: '40px',
+                                height: '40px',
+                                borderRadius: '50%',
+                                background: '#00bfff',
+                                color: 'white',
+                                fontSize: '12px',
+                                fontWeight: 700,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                +{cartItems.length - 3}
+                            </div>
+                        )}
+                    </div>
+                )}
 
                 <div style={{
                     display: 'inline-block',
@@ -129,13 +182,14 @@ export const SessionCard: React.FC<SessionCardProps> = ({
                     {scheme.badge}
                 </div>
 
+                {/* US-003: Robust calculation with proper validation */}
                 <div style={{
                     color: '#2d3436',
                     fontSize: '2.2rem',
                     fontWeight: 700,
                     marginTop: '16px'
                 }}>
-                    ${(totalAmount ?? 0).toLocaleString('es-CO', { maximumFractionDigits: 0 })}
+                    ${((totalAmount ?? 0).toLocaleString('es-CO', { maximumFractionDigits: 0 }))}
                 </div>
             </div>
 

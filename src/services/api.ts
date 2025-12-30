@@ -63,7 +63,7 @@ export const sessionApi = {
 
 export const cartApi = {
     getCart: async (sessionId: string): Promise<ShoppingCart> => {
-        const { data } = await apiClient.get<ShoppingCart>(`/carts/${sessionId}`);
+        const { data } = await apiClient.get<ShoppingCart>(`/carts/session/${sessionId}`);
         return data;
     },
 
